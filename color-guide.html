@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>인피니트 솔루션 - 명함 기반 브랜드 컬러</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Pretendard", sans-serif;
+        background: #f5f5f5;
+        color: #333;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        margin: 40px 0 10px;
+        font-size: 28px;
+      }
+      .subtitle {
+        text-align: center;
+        color: #888;
+        margin-bottom: 40px;
+        font-size: 14px;
+      }
+
+      .section {
+        margin-bottom: 50px;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+      .section-header {
+        padding: 20px 32px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .section-header h2 {
+        font-size: 20px;
+      }
+      .tag {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+      .section-body {
+        padding: 32px;
+      }
+
+      /* Extracted Colors Display */
+      .extracted-row {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .extracted-card {
+        flex: 1;
+        min-width: 160px;
+        text-align: center;
+      }
+      .extracted-swatch {
+        width: 80px;
+        height: 80px;
+        border-radius: 14px;
+        margin: 0 auto 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      .extracted-label {
+        font-family: monospace;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .extracted-desc {
+        font-size: 12px;
+        color: #888;
+      }
+
+      /* Palette Row */
+      .palette-row {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .palette-group {
+        flex: 1;
+        min-width: 180px;
+      }
+      .palette-group h3 {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .chips {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 6px;
+      }
+      .chip {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .chip:hover {
+        transform: scale(1.1);
+      }
+      .chip-label {
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 8px;
+        color: #999;
+        white-space: nowrap;
+        font-family: monospace;
+      }
+
+      /* Full Preview */
+      .full-preview {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        margin-top: 20px;
+      }
+
+      /* Header */
+      .pv-header {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        justify-content: space-between;
+      }
+      .pv-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .pv-logo-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #c9a84c 40%, #7a7870 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        color: #313036;
+        font-size: 14px;
+      }
+      .pv-logo-text {
+        font-size: 15px;
+        font-weight: 800;
+        color: white;
+      }
+      .pv-nav {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+      .pv-nav span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .pv-nav .cta-chip {
+        background: linear-gradient(135deg, #c9a84c, #b8963f);
+        padding: 6px 16px;
+        border-radius: 6px;
+        color: #1a191d;
+        font-weight: 700;
+        font-size: 12px;
+      }
+
+      /* Hero */
+      .pv-hero {
+        padding: 50px 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .pv-hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -40px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(201, 168, 76, 0.08),
+          transparent 70%
+        );
+      }
+      .pv-hero::after {
+        content: "";
+        position: absolute;
+        bottom: -60px;
+        left: 20%;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(201, 168, 76, 0.05),
+          transparent 70%
+        );
+      }
+      .pv-hero-tag {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+      .pv-hero h3 {
+        font-size: 28px;
+        color: white;
+        font-weight: 800;
+        line-height: 1.35;
+        margin-bottom: 12px;
+        position: relative;
+      }
+      .pv-hero h3 em {
+        font-style: normal;
+        background: linear-gradient(135deg, #c9a84c, #dfc06a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .pv-hero p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 24px;
+        position: relative;
+      }
+      .pv-hero .cta-row {
+        display: flex;
+        gap: 12px;
+        position: relative;
+      }
+      .pv-hero .cta-primary {
+        padding: 12px 28px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a191d;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(135deg, #c9a84c, #dfc06a);
+        box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+      }
+      .pv-hero .cta-secondary {
+        padding: 12px 28px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      /* Stats */
+      .pv-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        padding: 0 40px 40px;
+      }
+      .stat-card {
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid rgba(201, 168, 76, 0.12);
+        background: rgba(201, 168, 76, 0.04);
+      }
+      .stat-card .num {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .stat-card .label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      /* Glass Section */
+      .pv-glass-section {
+        padding: 40px;
+      }
+      .pv-glass-section h3 {
+        font-size: 18px;
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+      .glass-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .glass-item {
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid rgba(201, 168, 76, 0.12);
+        background: rgba(201, 168, 76, 0.04);
+        transition: all 0.3s;
+      }
+      .glass-item:hover {
+        background: rgba(201, 168, 76, 0.08);
+        border-color: rgba(201, 168, 76, 0.25);
+        transform: translateY(-2px);
+      }
+      .glass-item .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: linear-gradient(
+          135deg,
+          rgba(201, 168, 76, 0.15),
+          rgba(201, 168, 76, 0.05)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        font-size: 18px;
+      }
+      .glass-item h4 {
+        font-size: 14px;
+        color: white;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .glass-item p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.5;
+      }
+
+      /* Form */
+      .pv-form-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .pv-form-left {
+        padding: 40px;
+      }
+      .pv-form-left h3 {
+        font-size: 22px;
+        color: white;
+        margin-bottom: 8px;
+      }
+      .pv-form-left h3 em {
+        font-style: normal;
+        color: #c9a84c;
+      }
+      .pv-form-left p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 24px;
+      }
+      .pv-form-left .trust-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .trust-item .check {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(201, 168, 76, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #c9a84c;
+        font-size: 11px;
+      }
+      .pv-form-right {
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .form-input {
+        width: 100%;
+        height: 42px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .form-btn {
+        width: 100%;
+        height: 46px;
+        border-radius: 10px;
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a191d;
+        background: linear-gradient(135deg, #c9a84c, #dfc06a);
+        box-shadow: 0 4px 16px rgba(201, 168, 76, 0.25);
+      }
+
+      /* Footer */
+      .pv-footer {
+        padding: 24px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .pv-footer .brand {
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+      }
+      .pv-footer .domain {
+        color: #c9a84c;
+        font-size: 12px;
+      }
+
+      /* Compare Table */
+      .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .compare-table th {
+        text-align: left;
+        padding: 10px 16px;
+        background: #f9fafb;
+        font-weight: 600;
+        border-bottom: 2px solid #e5e7eb;
+      }
+      .compare-table td {
+        padding: 10px 16px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .dot {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+
+      .approval-section {
+        background: white;
+        border-radius: 16px;
+        padding: 40px;
+        text-align: center;
+        margin: 40px 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+      .approval-section h2 {
+        margin-bottom: 12px;
+      }
+      .approval-section p {
+        color: #888;
+        margin-bottom: 24px;
+        font-size: 14px;
+      }
+      .approval-btn {
+        padding: 16px 48px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: linear-gradient(135deg, #c9a84c, #dfc06a);
+        color: #1a191d;
+        box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+      }
+      .approval-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .pv-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .glass-grid {
+          grid-template-columns: 1fr;
+        }
+        .pv-form-section {
+          grid-template-columns: 1fr;
+        }
+        .extracted-row {
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>인피니트 솔루션 브랜드 컬러</h1>
+      <p class="subtitle">명함에서 추출한 컬러 기반 — #313036 + Gold Accent</p>
+
+      <!-- ============================================ -->
+      <!-- Extracted Colors -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div
+          class="section-header"
+          style="background: linear-gradient(135deg, #1c1b20, #313036)"
+        >
+          <h2>명함 추출 컬러</h2>
+          <span class="tag">기준 색상</span>
+        </div>
+        <div class="section-body">
+          <div class="extracted-row">
+            <div class="extracted-card">
+              <div class="extracted-swatch" style="background: #313036"></div>
+              <div class="extracted-label">#313036</div>
+              <div class="extracted-desc">명함 뒷면 배경<br />Primary Dark</div>
+            </div>
+            <div class="extracted-card">
+              <div
+                class="extracted-swatch"
+                style="
+                  background: linear-gradient(135deg, #c9a84c 40%, #b8963f);
+                "
+              ></div>
+              <div class="extracted-label">#C9A84C</div>
+              <div class="extracted-desc">로고 골드 상단<br />Main Accent</div>
+            </div>
+            <div class="extracted-card">
+              <div class="extracted-swatch" style="background: #7a7870"></div>
+              <div class="extracted-label">#7A7870</div>
+              <div class="extracted-desc">로고 그레이 하단<br />Secondary</div>
+            </div>
+            <div class="extracted-card">
+              <div
+                class="extracted-swatch"
+                style="background: #ffffff; border: 1px solid #e5e7eb"
+              ></div>
+              <div class="extracted-label">#FFFFFF</div>
+              <div class="extracted-desc">명함 텍스트<br />Text on Dark</div>
+            </div>
+            <div class="extracted-card">
+              <div class="extracted-swatch" style="background: #1a191d"></div>
+              <div class="extracted-label">#1A191D</div>
+              <div class="extracted-desc">
+                가장 어두운 배경<br />Deepest Dark
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Full Palette -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div
+          class="section-header"
+          style="background: linear-gradient(135deg, #1c1b20, #313036)"
+        >
+          <h2>완성 팔레트</h2>
+          <span class="tag">CSS Variables</span>
+        </div>
+        <div class="section-body">
+          <div class="palette-row">
+            <div class="palette-group">
+              <h3>Primary (배경)</h3>
+              <div class="chips">
+                <div class="chip" style="background: #1a191d">
+                  <span class="chip-label">#1A191D</span>
+                </div>
+                <div class="chip" style="background: #201f24">
+                  <span class="chip-label">#201F24</span>
+                </div>
+                <div
+                  class="chip"
+                  style="
+                    background: #313036;
+                    box-shadow: inset 0 0 0 2px #c9a84c;
+                  "
+                >
+                  <span class="chip-label" style="color: #333; font-weight: 700"
+                    >#313036</span
+                  >
+                </div>
+                <div class="chip" style="background: #3c3a42">
+                  <span class="chip-label">#3C3A42</span>
+                </div>
+                <div class="chip" style="background: #46444c">
+                  <span class="chip-label">#46444C</span>
+                </div>
+              </div>
+            </div>
+            <div class="palette-group">
+              <h3>Accent (골드)</h3>
+              <div class="chips">
+                <div class="chip" style="background: #b8963f">
+                  <span class="chip-label">#B8963F</span>
+                </div>
+                <div
+                  class="chip"
+                  style="background: #c9a84c; box-shadow: inset 0 0 0 2px white"
+                >
+                  <span class="chip-label" style="color: #333; font-weight: 700"
+                    >#C9A84C</span
+                  >
+                </div>
+                <div class="chip" style="background: #dfc06a">
+                  <span class="chip-label">#DFC06A</span>
+                </div>
+                <div class="chip" style="background: #ecdaa0">
+                  <span class="chip-label">#ECDAA0</span>
+                </div>
+                <div class="chip" style="background: #f5edda">
+                  <span class="chip-label">#F5EDDA</span>
+                </div>
+              </div>
+            </div>
+            <div class="palette-group">
+              <h3>Secondary (그레이)</h3>
+              <div class="chips">
+                <div class="chip" style="background: #5c5a56">
+                  <span class="chip-label">#5C5A56</span>
+                </div>
+                <div
+                  class="chip"
+                  style="background: #7a7870; box-shadow: inset 0 0 0 2px white"
+                >
+                  <span class="chip-label" style="color: #333; font-weight: 700"
+                    >#7A7870</span
+                  >
+                </div>
+                <div class="chip" style="background: #9e9c95">
+                  <span class="chip-label">#9E9C95</span>
+                </div>
+                <div class="chip" style="background: #c4c2bc">
+                  <span class="chip-label">#C4C2BC</span>
+                </div>
+                <div class="chip" style="background: #e8e7e4">
+                  <span class="chip-label">#E8E7E4</span>
+                </div>
+              </div>
+            </div>
+            <div class="palette-group">
+              <h3>Glass</h3>
+              <div class="chips">
+                <div
+                  class="chip"
+                  style="
+                    background: rgba(201, 168, 76, 0.08);
+                    border: 1px solid rgba(201, 168, 76, 0.18);
+                  "
+                >
+                  <span class="chip-label">glass-bg</span>
+                </div>
+                <div
+                  class="chip"
+                  style="
+                    background: rgba(201, 168, 76, 0.15);
+                    border: 1px solid rgba(201, 168, 76, 0.28);
+                  "
+                >
+                  <span class="chip-label">glass-hover</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Full Page Preview -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div
+          class="section-header"
+          style="background: linear-gradient(135deg, #1c1b20, #313036)"
+        >
+          <h2>전체 페이지 프리뷰</h2>
+          <span class="tag">실제 적용 예시</span>
+        </div>
+        <div class="section-body" style="padding: 0">
+          <div class="full-preview">
+            <!-- Header -->
+            <div
+              class="pv-header"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(26, 25, 29, 0.98),
+                  rgba(49, 48, 54, 0.95)
+                );
+                backdrop-filter: blur(12px);
+              "
+            >
+              <div class="pv-logo">
+                <div class="pv-logo-icon">S</div>
+                <span class="pv-logo-text">인피니트 솔루션</span>
+              </div>
+              <div class="pv-nav">
+                <span>회사소개</span>
+                <span>진행절차</span>
+                <span>정책자금</span>
+                <span>전문가서비스</span>
+                <span class="cta-chip">무료심사</span>
+              </div>
+            </div>
+
+            <!-- Hero -->
+            <div
+              class="pv-hero"
+              style="
+                background: linear-gradient(
+                  160deg,
+                  #1a191d 0%,
+                  #313036 40%,
+                  #3a3530 100%
+                );
+              "
+            >
+              <div
+                class="pv-hero-tag"
+                style="
+                  background: rgba(201, 168, 76, 0.12);
+                  color: #dfc06a;
+                  border: 1px solid rgba(201, 168, 76, 0.2);
+                "
+              >
+                정책자금 전문 컨설팅
+              </div>
+              <h3>
+                중소기업 정책자금의<br /><em>무한한 가능성</em>을 열어드립니다
+              </h3>
+              <p>
+                15년 경력의 기업심사관이 최적의 정책자금을 찾아 95% 승인률을
+                달성합니다
+              </p>
+              <div class="cta-row">
+                <button class="cta-primary">무료 상담 신청하기</button>
+                <button class="cta-secondary">1844-0621 전화 상담</button>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="pv-stats" style="background: #201f24">
+              <div class="stat-card">
+                <div class="num" style="color: #c9a84c">95%</div>
+                <div class="label">승인률</div>
+              </div>
+              <div class="stat-card">
+                <div class="num" style="color: #c9a84c">2억+</div>
+                <div class="label">평균 지원금</div>
+              </div>
+              <div class="stat-card">
+                <div class="num" style="color: #c9a84c">500+</div>
+                <div class="label">누적 기업</div>
+              </div>
+              <div class="stat-card">
+                <div class="num" style="color: #c9a84c">15년</div>
+                <div class="label">업력</div>
+              </div>
+            </div>
+
+            <!-- Service Glass Cards -->
+            <div
+              class="pv-glass-section"
+              style="background: linear-gradient(180deg, #201f24, #313036)"
+            >
+              <h3 style="text-align: center; margin-bottom: 24px">
+                전문 서비스 영역
+              </h3>
+              <div class="glass-grid">
+                <div class="glass-item">
+                  <div class="icon">&#128176;</div>
+                  <h4>정책자금 컨설팅</h4>
+                  <p>
+                    중소기업 맞춤형 정책자금을 발굴하고 최적의 조건으로 신청을
+                    대행합니다
+                  </p>
+                </div>
+                <div class="glass-item">
+                  <div class="icon">&#128200;</div>
+                  <h4>기업 금융 설계</h4>
+                  <p>
+                    기업의 재무 상황을 분석하여 단계별 자금 조달 전략을
+                    수립합니다
+                  </p>
+                </div>
+                <div class="glass-item">
+                  <div class="icon">&#128221;</div>
+                  <h4>사업계획서 준비 안내</h4>
+                  <p>승인률을 높이는 사업계획서 준비를 안내해 드립니다</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="pv-form-section" style="background: #1a191d">
+              <div class="pv-form-left">
+                <h3>지금 <em>무료 상담</em><br />받아보세요</h3>
+                <p>
+                  전문 기업심사관이 기업 상황에 맞는 최적의 정책자금을 안내해
+                  드립니다
+                </p>
+                <div class="trust-items">
+                  <div class="trust-item">
+                    <div class="check">&#10003;</div>
+                    상담비 100% 무료
+                  </div>
+                  <div class="trust-item">
+                    <div class="check">&#10003;</div>
+                    24시간 내 연락
+                  </div>
+                  <div class="trust-item">
+                    <div class="check">&#10003;</div>
+                    맞춤형 자금 분석
+                  </div>
+                  <div class="trust-item">
+                    <div class="check">&#10003;</div>
+                    95% 승인률 달성
+                  </div>
+                </div>
+              </div>
+              <div class="pv-form-right">
+                <div class="form-input">기업명 / 대표자명</div>
+                <div class="form-input">연락처</div>
+                <div class="form-input">이메일</div>
+                <div class="form-input">관심 자금 유형</div>
+                <div class="form-input">지역 (예: 대구)</div>
+                <div class="form-btn">무료 상담 신청하기</div>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="pv-footer" style="background: #18171b">
+              <div>
+                <div class="brand">인피니트 솔루션</div>
+                <span
+                  >대구광역시 달서구 달서대로 666, A83호 | 사업자등록번호
+                  363-74-00673 | 대표 김경환</span
+                >
+              </div>
+              <div style="text-align: right">
+                <div class="domain">infinites.co.kr</div>
+                <span>1844-0621 | gangang901@gmail.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- CSS Variable Table -->
+      <!-- ============================================ -->
+      <div class="section">
+        <div class="section-header" style="background: #313036">
+          <h2>CSS 변수 매핑</h2>
+          <span class="tag">적용 스펙</span>
+        </div>
+        <div class="section-body" style="overflow-x: auto">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>CSS Variable</th>
+                <th>이전 컬러</th>
+                <th>변경 (인피니트)</th>
+                <th>용도</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--primary-dark</code></td>
+                <td>
+                  <span class="dot" style="background: #142240"></span>#142240
+                </td>
+                <td>
+                  <span class="dot" style="background: #1a191d"></span
+                  ><strong>#1A191D</strong>
+                </td>
+                <td>가장 어두운 배경</td>
+              </tr>
+              <tr>
+                <td><code>--primary-pale</code></td>
+                <td>
+                  <span class="dot" style="background: #0f1b2d"></span>#0F1B2D
+                </td>
+                <td>
+                  <span class="dot" style="background: #201f24"></span
+                  ><strong>#201F24</strong>
+                </td>
+                <td>섹션 배경</td>
+              </tr>
+              <tr>
+                <td><code>--primary</code></td>
+                <td>
+                  <span class="dot" style="background: #1c2d4f"></span>#1C2D4F
+                </td>
+                <td>
+                  <span class="dot" style="background: #313036"></span
+                  ><strong>#313036</strong>
+                </td>
+                <td>메인 배경</td>
+              </tr>
+              <tr>
+                <td><code>--primary-hover</code></td>
+                <td>
+                  <span class="dot" style="background: #233758"></span>#233758
+                </td>
+                <td>
+                  <span class="dot" style="background: #3c3a42"></span
+                  ><strong>#3C3A42</strong>
+                </td>
+                <td>호버 배경</td>
+              </tr>
+              <tr>
+                <td><code>--primary-light</code></td>
+                <td>
+                  <span class="dot" style="background: #2a4066"></span>#2A4066
+                </td>
+                <td>
+                  <span class="dot" style="background: #46444c"></span
+                  ><strong>#46444C</strong>
+                </td>
+                <td>밝은 배경</td>
+              </tr>
+              <tr style="background: #f9fafb">
+                <td colspan="4" style="font-weight: 600; color: #888">
+                  Secondary (로고 그레이)
+                </td>
+              </tr>
+              <tr>
+                <td><code>--secondary</code></td>
+                <td>
+                  <span class="dot" style="background: #4a89b5"></span>#4A89B5
+                </td>
+                <td>
+                  <span class="dot" style="background: #7a7870"></span
+                  ><strong>#7A7870</strong>
+                </td>
+                <td>보조 색상</td>
+              </tr>
+              <tr>
+                <td><code>--secondary-light</code></td>
+                <td>
+                  <span class="dot" style="background: #7bbad6"></span>#7BBAD6
+                </td>
+                <td>
+                  <span class="dot" style="background: #9e9c95"></span
+                  ><strong>#9E9C95</strong>
+                </td>
+                <td>보조 밝은</td>
+              </tr>
+              <tr>
+                <td><code>--secondary-pale</code></td>
+                <td>
+                  <span class="dot" style="background: #a8d4e8"></span>#A8D4E8
+                </td>
+                <td>
+                  <span class="dot" style="background: #c4c2bc"></span
+                  ><strong>#C4C2BC</strong>
+                </td>
+                <td>보조 페일</td>
+              </tr>
+              <tr style="background: #f9fafb">
+                <td colspan="4" style="font-weight: 600; color: #888">
+                  Accent (골드)
+                </td>
+              </tr>
+              <tr>
+                <td><code>--accent-dark</code></td>
+                <td>
+                  <span class="dot" style="background: #4a89b5"></span>#4A89B5
+                </td>
+                <td>
+                  <span class="dot" style="background: #b8963f"></span
+                  ><strong>#B8963F</strong>
+                </td>
+                <td>CTA 어두운</td>
+              </tr>
+              <tr>
+                <td><code>--accent</code></td>
+                <td>
+                  <span class="dot" style="background: #7bbad6"></span>#7BBAD6
+                </td>
+                <td>
+                  <span class="dot" style="background: #c9a84c"></span
+                  ><strong>#C9A84C</strong>
+                </td>
+                <td>CTA, 강조</td>
+              </tr>
+              <tr>
+                <td><code>--accent-light</code></td>
+                <td>
+                  <span class="dot" style="background: #a8d4e8"></span>#A8D4E8
+                </td>
+                <td>
+                  <span class="dot" style="background: #dfc06a"></span
+                  ><strong>#DFC06A</strong>
+                </td>
+                <td>밝은 강조</td>
+              </tr>
+              <tr>
+                <td><code>--accent-pale</code></td>
+                <td>
+                  <span class="dot" style="background: #d4ecfa"></span>#D4ECFA
+                </td>
+                <td>
+                  <span class="dot" style="background: #f5edda"></span
+                  ><strong>#F5EDDA</strong>
+                </td>
+                <td>배경 강조</td>
+              </tr>
+              <tr style="background: #f9fafb">
+                <td colspan="4" style="font-weight: 600; color: #888">Glass</td>
+              </tr>
+              <tr>
+                <td><code>--glass-bg</code></td>
+                <td>rgba(42,64,102,0.25)</td>
+                <td><strong>rgba(201,168,76,0.08)</strong></td>
+                <td>글래스 배경</td>
+              </tr>
+              <tr>
+                <td><code>--glass-bg-hover</code></td>
+                <td>rgba(42,64,102,0.35)</td>
+                <td><strong>rgba(201,168,76,0.15)</strong></td>
+                <td>글래스 호버</td>
+              </tr>
+              <tr>
+                <td><code>--glass-border</code></td>
+                <td>rgba(168,212,232,0.15)</td>
+                <td><strong>rgba(201,168,76,0.12)</strong></td>
+                <td>글래스 보더</td>
+              </tr>
+              <tr>
+                <td><code>--glass-border-hover</code></td>
+                <td>rgba(168,212,232,0.3)</td>
+                <td><strong>rgba(201,168,76,0.25)</strong></td>
+                <td>보더 호버</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- Approval -->
+      <!-- ============================================ -->
+      <div class="approval-section">
+        <h2>이 컬러로 적용할까요?</h2>
+        <p>
+          승인하시면 CSS 변수를 일괄 교체하고, 각 페이지의 인라인 스타일도 함께
+          업데이트합니다.
+        </p>
+        <button class="approval-btn">승인 — CSS 일괄 교체 진행</button>
+      </div>
+    </div>
+  </body>
+</html>

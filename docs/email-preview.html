@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인피니트 솔루션 이메일 템플릿 미리보기</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            background: #f3f4f6;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .preview-header {
+            max-width: 1300px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+        .preview-header h1 {
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 10px;
+        }
+        .preview-header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .tab {
+            padding: 12px 24px;
+            border: none;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            transition: all 0.2s;
+        }
+        .tab:hover { background: #f9fafb; }
+        .tab.active {
+            background: #000;
+            color: white;
+        }
+        .preview-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 30px;
+        }
+        .preview-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .preview-section.hidden { display: none; }
+        .preview-label {
+            background: #f9fafb;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .preview-label span {
+            font-weight: 600;
+            color: #111;
+        }
+        .preview-label .badge {
+            background: #000;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        .email-frame {
+            padding: 30px;
+            background: #f9fafb;
+        }
+        .color-palette {
+            max-width: 1300px;
+            margin: 40px auto 0;
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .color-palette h3 {
+            font-size: 16px;
+            color: #111;
+            margin-bottom: 16px;
+        }
+        .colors {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .color-info {
+            font-size: 13px;
+        }
+        .color-info strong { display: block; color: #111; }
+        .color-info span { color: #6b7280; }
+    </style>
+</head>
+<body>
+    <div class="preview-header">
+        <h1>인피니트 솔루션 이메일 템플릿 미리보기</h1>
+        <p>Navy Blue 브랜드 컬러 적용</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('all')">전체 보기</button>
+        <button class="tab" onclick="showTab('customer')">고객용</button>
+        <button class="tab" onclick="showTab('staff')">담당자용</button>
+    </div>
+
+    <div class="preview-container">
+        <!-- 고객용 이메일 -->
+        <div class="preview-section" id="customer-section">
+            <div class="preview-label">
+                <span>고객용 이메일</span>
+                <span class="badge">Customer</span>
+            </div>
+            <div class="email-frame">
+                <div style="font-family: 'Pretendard', -apple-system, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <div style="background: linear-gradient(135deg, #000000 0%, #141414 100%); color: white; padding: 35px 30px; border-radius: 16px 16px 0 0; text-align: center;">
+                        <img src="https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/logo_light.png" alt="인피니트 솔루션" style="width: 120px; height: auto; margin-bottom: 15px;">
+                        <h2 style="margin: 0; font-size: 22px; font-weight: 700;">무료진단 신청이 접수되었습니다</h2>
+                        <p style="margin: 12px 0 0 0; opacity: 0.95; font-size: 14px; font-weight: 500;">인피니트 솔루션 정책자금 전문상담</p>
+                    </div>
+
+                    <div style="background: #fef3c7; padding: 12px 20px; text-align: center; border-left: 1px solid #e5e7eb; border-right: 1px solid #e5e7eb;">
+                        <p style="margin: 0; color: #92400e; font-size: 12px; line-height: 1.6;">📧 본 메일은 발신전용으로 회신이 불가합니다.<br>문의는 <strong>1844-0621</strong> 또는<br><strong>gangang901@gmail.com</strong>으로 연락주세요.</p>
+                    </div>
+
+                    <div style="background: white; padding: 35px 30px; border: 1px solid #e5e7eb; border-top: none;">
+                        <div style="background: #F5F5F5; padding: 24px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #000000;">
+                            <p style="margin: 0 0 12px 0; font-size: 16px; color: #1A1A1A;">안녕하세요, <strong style="color: #000000;">홍길동</strong>님! 👋</p>
+                            <p style="margin: 0; color: #404040; line-height: 1.8; font-size: 14px;">정책자금 심사신청이 정상적으로<br>접수되었습니다.<br><br>영업일기준 24시간 이내<br>담당 전문 컨설턴트가 연락드리겠습니다.</p>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #000000 0%, #141414 100%); padding: 24px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);">
+                            <h3 style="color: white; margin: 0 0 18px 0; font-size: 16px; font-weight: 600;">📋 접수 내용</h3>
+                            <table style="width: 100%; color: white; font-size: 12px; border-collapse: separate; border-spacing: 0 6px;">
+                                <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; width: 35%; white-space: nowrap;">🏢 기업명</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">(주)테스트기업</td></tr>
+                                <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; white-space: nowrap;">📞 연락처</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">010-1234-5678</td></tr>
+                                <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; white-space: nowrap;">💰 희망자금</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">1억원 이상</td></tr>
+                                <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; white-space: nowrap;">⏰ 연락시간</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">오전 (09:00~12:00)</td></tr>
+                            </table>
+                        </div>
+
+                        <div style="background: #F5F5F5; padding: 20px 24px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #000000; text-align: center;">
+                            <p style="margin: 0; color: #1A1A1A; font-weight: 600; font-size: 15px; line-height: 1.7;">영업일기준 <strong style="color: #000000;">24시간 이내</strong>에<br>인피니트 솔루션에서 연락드리겠습니다.</p>
+                        </div>
+
+                        <div style="text-align: center; padding: 20px 0; border-top: 1px dashed #e5e7eb;">
+                            <p style="margin: 0 0 15px 0; color: #6b7280; font-size: 13px;">문의사항이 있으시면 아래 연락처로 연락주세요</p>
+                            <div style="display: inline-block; background: #f3f4f6; padding: 12px 24px; border-radius: 8px;">
+                                <span style="color: #374151; font-size: 14px;">📞 <strong>1844-0621</strong></span>
+                                <span style="color: #d1d5db; margin: 0 10px;">|</span>
+                                <span style="color: #374151; font-size: 14px;">✉️ <strong>gangang901@gmail.com</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; padding: 25px; background: #000000; border-radius: 0 0 16px 16px; color: white;">
+                        <p style="margin: 0 0 8px 0; font-weight: 700; font-size: 15px;">인피니트 솔루션</p>
+                        <p style="margin: 0 0 5px 0; opacity: 0.85; font-size: 13px;">중소기업 성장의 든든한 파트너</p>
+                        <p style="margin: 15px 0 0 0; opacity: 0.7; font-size: 11px;">※ 본 메일은 발신전용으로 회신이 불가합니다.</p>
+                        <p style="margin: 5px 0 0 0; opacity: 0.7; font-size: 11px;">문의: 1844-0621 | gangang901@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 담당자용 이메일 -->
+        <div class="preview-section" id="staff-section">
+            <div class="preview-label">
+                <span>담당자용 이메일</span>
+                <span class="badge">Staff</span>
+            </div>
+            <div class="email-frame">
+                <div style="font-family: 'Pretendard', -apple-system, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <div style="background: linear-gradient(135deg, #000000 0%, #141414 100%); color: white; padding: 30px; border-radius: 16px 16px 0 0;">
+                        <h2 style="margin: 0; font-size: 24px; font-weight: 700;">🔔 인피니트 솔루션 신규 상담 신청</h2>
+                        <p style="margin: 10px 0 0 0; opacity: 0.95; font-size: 14px;">💻 홈페이지 접수</p>
+                    </div>
+
+                    <div style="background: white; padding: 30px; border: 1px solid #e5e7eb; border-top: none;">
+                        <div style="background: #F5F5F5; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #000000;">
+                            <h3 style="color: #1A1A1A; margin: 0 0 15px 0; font-size: 18px; border-bottom: 2px solid #000000; padding-bottom: 8px; display: inline-block;">📋 기업 정보</h3>
+                            <table style="width: 100%;">
+                                <tr><td style="padding: 8px 0; color: #525252; width: 40%; white-space: nowrap;">🏢 기업명</td><td style="font-weight: 600; color: #1A1A1A;">(주)테스트기업</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📄 사업자번호</td><td style="color: #374151;">123-45-67890</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📍 지역</td><td style="color: #374151;">서울특별시</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">🏭 업종</td><td style="color: #374151;">IT/소프트웨어</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📅 설립연도</td><td style="color: #374151;">2020년</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📊 전년도매출</td><td style="color: #374151;">5억원 이상</td></tr>
+                            </table>
+                        </div>
+
+                        <div style="background: #F5F5F5; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #000000;">
+                            <h3 style="color: #1A1A1A; margin: 0 0 15px 0; font-size: 18px; border-bottom: 2px solid #000000; padding-bottom: 8px; display: inline-block;">👤 담당자 정보</h3>
+                            <table style="width: 100%;">
+                                <tr><td style="padding: 8px 0; color: #525252; width: 40%; white-space: nowrap;">👤 이름</td><td style="color: #374151;">홍길동</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📞 연락처</td><td style="color: #1A1A1A; font-weight: 600;">010-1234-5678</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">✉️ 이메일</td><td style="color: #374151;">test@example.com</td></tr>
+                                <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">⏰ 연락시간</td><td style="color: #000000; font-weight: 600;">오전 (09:00~12:00)</td></tr>
+                            </table>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #000000 0%, #141414 100%); padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);">
+                            <h3 style="color: white; margin: 0 0 15px 0; font-size: 18px; font-weight: 600;">💰 자금 정보</h3>
+                            <table style="width: 100%; color: white;">
+                                <tr><td style="padding: 8px 0; opacity: 0.8; width: 40%;">희망자금</td><td style="font-weight: 600;">1억원 이상</td></tr>
+                                <tr><td style="padding: 8px 0; opacity: 0.8;">자금용도</td><td>운영자금</td></tr>
+                                <tr><td style="padding: 8px 0; opacity: 0.8;">기타문의</td><td>-</td></tr>
+                            </table>
+                        </div>
+
+                        <div style="text-align: center; padding: 15px; background: #f9fafb; border-radius: 8px;">
+                            <p style="margin: 0; color: #6b7280; font-size: 12px;">접수일시: 2025년 1월 6일 15:30</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; padding: 20px; background: #000000; border-radius: 0 0 16px 16px; color: white;">
+                        <p style="margin: 0; font-weight: 600; font-size: 14px;">인피니트 솔루션 내부용 알림</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="color-palette">
+        <h3>🎨 적용된 브랜드 컬러</h3>
+        <div class="colors">
+            <div class="color-item">
+                <div class="color-swatch" style="background: #000000;"></div>
+                <div class="color-info">
+                    <strong>Primary Black</strong>
+                    <span>#000000</span>
+                </div>
+            </div>
+            <div class="color-item">
+                <div class="color-swatch" style="background: #141414;"></div>
+                <div class="color-info">
+                    <strong>Dark Gray</strong>
+                    <span>#141414</span>
+                </div>
+            </div>
+            <div class="color-item">
+                <div class="color-swatch" style="background: #1A1A1A;"></div>
+                <div class="color-info">
+                    <strong>Text Dark</strong>
+                    <span>#1A1A1A</span>
+                </div>
+            </div>
+            <div class="color-item">
+                <div class="color-swatch" style="background: #F5F5F5;"></div>
+                <div class="color-info">
+                    <strong>Light Gray BG</strong>
+                    <span>#F5F5F5</span>
+                </div>
+            </div>
+            <div class="color-item">
+                <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #e5e7eb;"></div>
+                <div class="color-info">
+                    <strong>White</strong>
+                    <span>#FFFFFF</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(type) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const customer = document.getElementById('customer-section');
+            const staff = document.getElementById('staff-section');
+
+            if (type === 'all') {
+                customer.classList.remove('hidden');
+                staff.classList.remove('hidden');
+            } else if (type === 'customer') {
+                customer.classList.remove('hidden');
+                staff.classList.add('hidden');
+            } else {
+                customer.classList.add('hidden');
+                staff.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
