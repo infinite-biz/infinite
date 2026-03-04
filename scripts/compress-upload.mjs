@@ -3,9 +3,9 @@ import { execSync } from 'child_process';
 import { readdirSync, statSync } from 'fs';
 import path from 'path';
 
-const SRC = 'F:/pola_homepage/15.26_1th_kimeunhee_kmoney/images/board/sora_raw';
-const DEST = 'F:/pola_homepage/15.26_1th_kimeunhee_kmoney/images/board/sora_webp';
-const R2_BUCKET = 'kfund-r2';
+const SRC = 'F:/pola_homepage/26.26_1th_kimkyunghwan_infinites/images/board/sora_raw';
+const DEST = 'F:/pola_homepage/26.26_1th_kimkyunghwan_infinites/images/board/sora_webp';
+const R2_BUCKET = 'infinite-r2';
 
 // File → R2 key mapping
 const FILE_MAP = {
@@ -73,7 +73,7 @@ async function main() {
   }
 
   console.log('\n=== Step 2: Upload to R2 ===');
-  const wranglerDir = 'F:/pola_homepage/15.26_1th_kimeunhee_kmoney/scripts';
+  const wranglerDir = 'F:/pola_homepage/26.26_1th_kimkyunghwan_infinites/scripts';
 
   for (const file of files) {
     const destPath = path.join(DEST, file);
