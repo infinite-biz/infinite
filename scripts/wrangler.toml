@@ -1,7 +1,7 @@
-name = "infinites"
+name = "infinite"
 main = "worker.js"
 compatibility_date = "2024-01-01"
-account_id = "c5eb7f24ae078dc9caede7e6d4fc3f41"
+account_id = "dda30f9c90982d079ef3ec76921f7d84"
 
 # Worker URL: https://infinite.gangang901.workers.dev
 
