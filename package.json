@@ -5,6 +5,7 @@
   "description": "인피니트 솔루션 홈페이지",
   "scripts": {
     "build": "node build.cjs",
+    "deploy": "node build.cjs && npx vercel deploy --prod --force --yes",
     "dev": "npx kill-port 5000 2>/dev/null; npx live-server . --port=5000 --no-browser",
     "watch": "nodemon --watch src --watch css --exec \"node build.cjs\" -e html,css,js",
     "generate-images": "node scripts/generate-images.mjs"

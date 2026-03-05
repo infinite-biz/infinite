@@ -4,12 +4,6 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/marketing-news/:slug",
-      "destination": "/posts/:slug"
-    }
-  ],
-  "redirects": [
-    {
       "source": "/:path(.*)",
       "has": [
         {
@@ -17,9 +11,14 @@
           "value": "admin.infinites.co.kr"
         }
       ],
-      "destination": "https://infinites.co.kr/admin/:path",
-      "permanent": false
+      "destination": "/admin/:path"
     },
+    {
+      "source": "/marketing-news/:slug",
+      "destination": "/posts/:slug"
+    }
+  ],
+  "redirects": [
     {
       "source": "/:path((?!admin).*)",
       "has": [

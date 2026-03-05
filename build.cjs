@@ -25,7 +25,7 @@ htmlFiles.forEach(file => {
 console.log('\n✅ 빌드 완료!');
 
 // sitemap.xml, robots.txt 복사
-['sitemap.xml', 'robots.txt'].forEach(file => {
+['sitemap.xml', 'robots.txt', 'vercel.json'].forEach(file => {
     const src = path.join(ROOT_DIR, file);
     const dest = path.join(DIST_DIR, file);
     if (fs.existsSync(src)) {
