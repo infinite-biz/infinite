@@ -1859,7 +1859,7 @@
               post.content.includes("/r2/board/"))
           ) {
             try {
-              const r2Resp = await fetch(post.content);
+              const r2Resp = await fetch(post.content, { cache: "no-cache" });
               bodyEl.innerHTML = await r2Resp.text();
             } catch (e) {
               bodyEl.innerHTML = parseContent(post.content);

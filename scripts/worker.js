@@ -1975,7 +1975,12 @@ export default {
           "Content-Type",
           object.httpMetadata?.contentType || "image/webp",
         );
-        headers.set("Cache-Control", "public, max-age=31536000, immutable");
+        // 이미지는 장기 캐시, HTML 콘텐츠는 짧은 캐시
+        const isHTML = objectKey.endsWith(".html");
+        headers.set(
+          "Cache-Control",
+          isHTML ? "public, max-age=60" : "public, max-age=31536000, immutable",
+        );
         headers.set("Access-Control-Allow-Origin", "*");
         return new Response(object.body, { headers });
       }
