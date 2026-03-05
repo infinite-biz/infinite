@@ -2729,7 +2729,7 @@
       // 인피니트 솔루션 폼 - Cloudflare Workers 통합 연동
       const WORKER_URL = "https://infinite.gangang901.workers.dev";
 
-      async function handleKfundSubmit(event) {
+      async function handleConsultSubmit(event) {
         event.preventDefault();
 
         const form = event.target;
@@ -2991,7 +2991,7 @@
       // 폼 제출 이벤트 연결
       document
         .getElementById("infinitesConsultForm")
-        .addEventListener("submit", handleKfundSubmit);
+        .addEventListener("submit", handleConsultSubmit);
 
       // 개인정보 동의 토글
       function toggleinfinitesPrivacy() {

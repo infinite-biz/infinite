@@ -3746,9 +3746,7 @@
                   <label for="infinitesPrivacy"
                     >개인정보 수집·이용에 동의합니다
                     <span class="required">*</span><br class="mobile-br" />
-                    <span
-                      class="privacy-detail-link"
-                      onclick="toggleKfundPrivacy()"
+                    <span class="privacy-detail-link" onclick="togglePrivacy()"
                       >내용보기</span
                     ></label
                   >
@@ -3816,7 +3814,7 @@
       // 폼 - Cloudflare Workers 통합 연동
       const WORKER_URL = "https://infinite.gangang901.workers.dev";
 
-      async function handleKfundSubmit(event) {
+      async function handleConsultSubmit(event) {
         event.preventDefault();
 
         const form = event.target;
@@ -4078,10 +4076,10 @@
       // 폼 제출 이벤트 연결
       document
         .getElementById("infinitesConsultForm")
-        .addEventListener("submit", handleKfundSubmit);
+        .addEventListener("submit", handleConsultSubmit);
 
       // 개인정보 동의 토글
-      function toggleKfundPrivacy() {
+      function togglePrivacy() {
         const content = document.getElementById("infinitesPrivacyContent");
         content.classList.toggle("show");
       }
