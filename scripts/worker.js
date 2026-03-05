@@ -17,14 +17,7 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-const STATIC_SLUGS = [
-  "2026-policy-fund-overview",
-  "2026-startup-support",
-  "2026-small-business-voucher",
-  "2026-ax-sprint-track",
-  "2026-non-capital-region",
-  "2026-hope-return-package",
-];
+const STATIC_SLUGS = [];
 
 // ================================================
 // 유틸리티
@@ -1985,6 +1978,67 @@ export default {
         headers.set("Cache-Control", "public, max-age=31536000, immutable");
         headers.set("Access-Control-Allow-Origin", "*");
         return new Response(object.body, { headers });
+      }
+
+      // 콘텐츠 HTML 업로드 (게시글 본문 → R2)
+      if (path === "/upload-content" && request.method === "POST") {
+        if (!env.BUCKET) {
+          return new Response(
+            JSON.stringify({ success: false, error: "R2 bucket not bound" }),
+            {
+              status: 500,
+              headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            },
+          );
+        }
+
+        try {
+          const { html, slug } = await request.json();
+          if (!html) {
+            return new Response(
+              JSON.stringify({ success: false, error: "No html provided" }),
+              {
+                status: 400,
+                headers: {
+                  ...CORS_HEADERS,
+                  "Content-Type": "application/json",
+                },
+              },
+            );
+          }
+
+          const timestamp = Date.now();
+          const randomStr = Math.random().toString(36).substring(2, 8);
+          const safeName = slug || `${timestamp}-${randomStr}`;
+          const fileName = `board/content/${safeName}.html`;
+
+          await env.BUCKET.put(fileName, html, {
+            httpMetadata: { contentType: "text/html; charset=utf-8" },
+          });
+
+          const workerUrl = new URL(request.url);
+          const publicUrl = `${workerUrl.origin}/r2/${fileName}`;
+          return new Response(
+            JSON.stringify({ success: true, url: publicUrl, fileName }),
+            {
+              headers: {
+                ...CORS_HEADERS,
+                "Content-Type": "application/json",
+              },
+            },
+          );
+        } catch (error) {
+          return new Response(
+            JSON.stringify({ success: false, error: error.message }),
+            {
+              status: 500,
+              headers: {
+                ...CORS_HEADERS,
+                "Content-Type": "application/json",
+              },
+            },
+          );
+        }
       }
 
       // 이미지 업로드

@@ -1782,7 +1782,7 @@
           }
         }
 
-        function displayPost(post) {
+        async function displayPost(post) {
           loadingEl.style.display = "none";
           errorEl.style.display = "none";
           layoutEl.style.display = "grid";
@@ -1850,10 +1850,23 @@
           document.getElementById("sidebar-date").textContent = formattedDate;
           document.getElementById("sidebar-views").textContent = viewsText;
 
-          // 내용 파싱
-          const contentHtml = parseContent(post.content);
+          // 내용 파싱 — R2 URL이면 fetch, 아니면 인라인 파싱
           const bodyEl = document.getElementById("post-body");
-          bodyEl.innerHTML = contentHtml;
+          if (
+            post.content &&
+            post.content.startsWith("https://") &&
+            (post.content.includes(".r2.dev/") ||
+              post.content.includes("/r2/board/"))
+          ) {
+            try {
+              const r2Resp = await fetch(post.content);
+              bodyEl.innerHTML = await r2Resp.text();
+            } catch (e) {
+              bodyEl.innerHTML = parseContent(post.content);
+            }
+          } else {
+            bodyEl.innerHTML = parseContent(post.content);
+          }
 
           // 후처리: 테이블을 스크롤 래퍼로 감싸기
           bodyEl.querySelectorAll("table").forEach(function (table) {
@@ -1883,8 +1896,7 @@
                 relatedGrid.innerHTML = relatedPosts
                   .map((post) => {
                     const postUrl = `post.html?id=${post.id}`;
-                    const thumbnail =
-                      post.thumbnail || "/images/og/og-home.png";
+                    const thumbnail = post.thumbnail || "/images/logo-dark.png";
 
                     return `
                                 <a href="${postUrl}" class="related-card">

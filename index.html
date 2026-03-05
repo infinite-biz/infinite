@@ -125,7 +125,7 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "인피니트 솔루션",
-        "alternateName": ["인피니트", "K-FUND COMPANY"],
+        "alternateName": ["인피니트", "INFINITE SOLUTIONS"],
         "url": "https://infinites.co.kr",
         "logo": "https://infinites.co.kr/images/logo-dark.png",
         "image": "https://infinites.co.kr/images/og/og-home.png",
@@ -4572,99 +4572,13 @@
     </div>
 
     <script>
-      // 인피니트 솔루션 게시판 - 하이브리드 방식 (정적 + API)
+      // 인피니트 솔루션 게시판 - API 연동
       (function () {
-        // API 비활성화 - 인피니트 솔루션 Worker와 간섭 방지 (추후 자체 Worker 연결)
-        // (removed IBN reference)
-
+        const WORKER_URL = "https://infinite.gangang901.workers.dev";
         const POSTS_PER_PAGE = 6;
         let currentPage = 1;
         let allPosts = [];
         let isLoading = false;
-
-        // 정적 게시글 데이터 (즉시 로딩 - API 호출 없음)
-        const STATIC_POSTS = [
-          {
-            id: "static-1",
-            slug: "2026-policy-fund-overview",
-            title: "2026년 중소기업 정책자금 4.43조원 완전 가이드",
-            excerpt:
-              "2026년 중소기업 정책자금 4조 4,313억원 운용계획 총정리. 혁신창업, 신성장기반, 재도약 등 분야별 지원내용과 신청방법 안내.",
-            category: "정책자금",
-            thumbnail:
-              "https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/board/2026-policy-fund-overview.webp",
-            date: "2026-01-08",
-            views: 1250,
-          },
-          {
-            id: "static-2",
-            slug: "2026-startup-support",
-            title: "2026년 창업지원사업 통합공고 3.46조원 완전 가이드",
-            excerpt:
-              "2026년 창업지원사업 통합공고 3조 4,645억원 총정리. 111개 기관 508개 사업, 예비창업패키지부터 초격차까지 단계별 지원.",
-            category: "창업지원",
-            thumbnail:
-              "https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/board/2026-startup-support.webp",
-            date: "2026-01-07",
-            views: 980,
-          },
-          {
-            id: "static-3",
-            slug: "2026-small-business-voucher",
-            title: "2026년 소상공인 경영안정 바우처 5,790억원 완전 가이드",
-            excerpt:
-              "2026년 신규 도입된 소상공인 경영안정 바우처 완벽 가이드. 230만 소상공인 대상, 1인당 25만원 지급.",
-            category: "소상공인",
-            thumbnail:
-              "https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/board/2026-small-business-voucher.webp",
-            date: "2026-01-06",
-            views: 856,
-          },
-          {
-            id: "static-4",
-            slug: "2026-ax-sprint-track",
-            title:
-              "2026년 AX 스프린트 우대트랙 1,400억원 - AI·반도체 기업 특화 지원",
-            excerpt:
-              "2026년 신설된 AX 스프린트 우대트랙 완벽 가이드. AI·반도체 혁신기업 대상 최대 한도·금리 우대·신속평가 혜택.",
-            category: "특화지원",
-            thumbnail:
-              "https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/board/2026-ax-sprint-track.webp",
-            date: "2026-01-05",
-            views: 723,
-          },
-          {
-            id: "static-5",
-            slug: "2026-non-capital-region",
-            title:
-              "2026년 비수도권 특화 지원정책 2.44조원 - 지방 기업 우대 가이드",
-            excerpt:
-              "2026년 비수도권 기업을 위한 정책자금 특화 지원 가이드. 전체 예산의 60% 이상 2.44조원 집중 공급.",
-            category: "지역특화",
-            thumbnail:
-              "https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/board/2026-non-capital-region.webp",
-            date: "2026-01-04",
-            views: 645,
-          },
-          {
-            id: "static-6",
-            slug: "2026-hope-return-package",
-            title:
-              "2026년 희망리턴패키지 356억원 - 폐업부터 재기까지 원스톱 지원",
-            excerpt:
-              "2026년 희망리턴패키지 완벽 가이드. 폐업 컨설팅, 점포 철거비 최대 600만원, 재창업 자금 2,000만원 지원.",
-            category: "재창업",
-            thumbnail:
-              "https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/board/2026-hope-return-package.webp",
-            date: "2026-01-03",
-            views: 512,
-          },
-        ];
-
-        // 정적 게시글 slug 목록 (중복 제거용)
-        const STATIC_SLUGS = STATIC_POSTS.map((p) => p.slug);
-        // 정적 게시글 제목 목록 (제목 기반 중복 제거용)
-        const STATIC_TITLES = STATIC_POSTS.map((p) => p.title);
 
         // DOM 요소
         const loadingEl = document.getElementById("board-loading");
@@ -4675,18 +4589,31 @@
         const modalOverlay = document.getElementById("board-modal-overlay");
         const modalClose = document.getElementById("board-modal-close");
 
-        // 게시글 로드 (하이브리드: 정적 먼저 + API 추가)
+        // 게시글 로드 (워커 API)
         async function fetchPosts() {
           if (isLoading) return;
           isLoading = true;
 
-          // 1. 정적 게시글 즉시 표시
-          allPosts = [...STATIC_POSTS];
+          try {
+            const resp = await fetch(`${WORKER_URL}/posts`);
+            const data = await resp.json();
+            allPosts = (data.posts || []).map((p) => ({
+              id: p.id,
+              slug: p.slug || "",
+              title: p.title,
+              excerpt: p.description || "",
+              category: p.category || "소식",
+              thumbnail: p.thumbnail || "",
+              date: p.date,
+              views: p.views || 0,
+            }));
+          } catch (e) {
+            console.error("게시글 로드 실패:", e);
+            allPosts = [];
+          }
+
           loadingEl.style.display = "none";
           renderPosts();
-
-          // API 비활성화 - 인피니트 솔루션 Worker와 간섭 방지
-          // 정적 게시글만 사용 (추후 자체 Worker 연결 시 활성화)
           isLoading = false;
         }
 
@@ -4744,19 +4671,11 @@
             moreEl.style.display = "none";
           }
 
-          // 카드 클릭 이벤트 - 정적/동적 분기
+          // 카드 클릭 이벤트 → post.html로 이동
           gridEl.querySelectorAll(".board-card").forEach((card) => {
             card.addEventListener("click", () => {
-              const slug = card.dataset.slug;
               const postId = card.dataset.id;
-
-              if (slug) {
-                // 정적 게시글 → /marketing-news/slug 형태로 이동
-                window.location.href = `/marketing-news/${slug}`;
-              } else {
-                // API 게시글 → post.html 경유
-                window.location.href = `post.html?id=${postId}`;
-              }
+              window.location.href = `post.html?id=${postId}`;
             });
           });
         }
