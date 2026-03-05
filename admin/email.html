@@ -1633,30 +1633,48 @@
         );
 
         return `
-      <div style="font-family:'Pretendard',-apple-system,sans-serif; max-width:600px; margin:0 auto;">
-        <div style="background:linear-gradient(135deg,#201F24 0%,#141414 100%); color:white; padding:35px 30px; border-radius:16px 16px 0 0; text-align:center;">
-          <img src="https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/logo_light.png" alt="인피니트 솔루션" style="width:120px; height:auto; margin-bottom:15px;">
-          <h2 style="margin:0; font-size:22px; font-weight:700;">${e(substituteVars(subject, lead))}</h2>
-          <p style="margin:12px 0 0; opacity:0.95; font-size:14px;">인피니트 솔루션 정책자금 전문상담</p>
+      <div style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif; max-width:580px; margin:0 auto; background:#ffffff;">
+        <div style="background:#1a1a1a; padding:32px 36px;">
+          <p style="margin:0; color:#ffffff; font-size:13px; font-weight:300; letter-spacing:5px; text-transform:uppercase;">INFINITE SOLUTIONS</p>
+          <p style="margin:6px 0 0; color:#888888; font-size:10px; letter-spacing:2px; text-transform:uppercase;">Consultation Alert</p>
         </div>
-        <div style="background:#fef3c7; padding:12px 20px; text-align:center; border-left:1px solid #e5e7eb; border-right:1px solid #e5e7eb;">
-          <p style="margin:0; color:#92400e; font-size:12px; line-height:1.6;">📧 본 메일은 발신전용으로 회신이 불가합니다.<br>문의는 <strong>1844-0621</strong> 또는 <strong>gangang901@gmail.com</strong>으로 연락주세요.</p>
+        <div style="background:#f5f0e8; padding:10px 36px; border-left:3px solid #313036;">
+          <p style="margin:0; color:#555555; font-size:11px; line-height:1.6;">본 메일은 발신전용입니다. 문의: <strong>1844-0621</strong> | gangang901@gmail.com</p>
         </div>
-        <div style="background:white; padding:35px 30px; border:1px solid #e5e7eb; border-top:none;">
-          <div style="font-size:14px; color:#404040; line-height:1.8;">${bodyHtml}</div>
-          <div style="text-align:center; padding:20px 0; margin-top:20px; border-top:1px dashed #e5e7eb;">
-            <p style="margin:0 0 15px; color:#6b7280; font-size:13px;">문의사항은 아래 연락처로 연락주세요</p>
-            <p style="margin:0 0 6px; color:#374151; font-size:13px;">📞 <strong>1844-0621</strong></p>
-            <p style="margin:0; color:#374151; font-size:13px;">✉️ <strong>gangang901@gmail.com</strong></p>
-          </div>
+        <div style="padding:36px 36px 28px; border-bottom:1px solid #eeeeee;">
+          <p style="margin:0 0 6px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#777777;">${e(substituteVars(subject, lead))}</p>
+          <div style="font-size:14px; color:#404040; line-height:1.8; margin-top:16px;">${bodyHtml}</div>
         </div>
-        <div style="text-align:center; padding:20px 12px; background:#201F24; border-radius:0 0 16px 16px; color:white;">
-          <p style="margin:0 0 6px; font-weight:700; font-size:14px;">인피니트 솔루션</p>
-          <p style="margin:0 0 4px; opacity:0.85; font-size:12px;">중소기업 성장의 든든한 파트너</p>
-          <p style="margin:10px 0 0; opacity:0.7; font-size:10px;">※ 본 메일은 발신전용으로 회신이 불가합니다.</p>
-          <p style="margin:4px 0 0; opacity:0.7; font-size:10px;">문의: 1844-0621 | gangang901@gmail.com</p>
+        <div style="padding:20px 36px; background:#fafafa; border-bottom:1px solid #eeeeee;">
+          <p style="margin:0; font-size:12px; color:#555555; line-height:1.6;">문의: <strong style="color:#1a1a1a;">1844-0621</strong> &nbsp;|&nbsp; gangang901@gmail.com</p>
+        </div>
+        <div style="padding:16px 36px; background:#fafafa;">
+          <p style="margin:0; font-size:10px; color:#aaaaaa; letter-spacing:0.5px;">INFINITE SOLUTIONS &nbsp;&nbsp; 본 메일은 발신전용으로 회신이 불가합니다.</p>
         </div>
       </div>`;
+      }
+
+      // SVG-based icon data URIs (gold #c9a84c, 16x16 display)
+      const ICONS = {
+        building:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB6ElEQVR4nN1XzUrDQBDuSU/qRX0Af25S/17BQ+hMCyJF0OIbKOJFwbO26Fso7U5zKi34BNrshLaoeCr05gOI6FGUlaTdltY0JlrtwFxmv8x8mdlMZiKRvyqSYJFzuCcJM0FU+bBy8ajP4JiRBG9M+B6GKl+SIN1XcFvgZutBfJGEjYD60iIDyX5SX/oEC7y9LiTGfKWum79LY5wJ7j5fSEDR8wEmrDtsz4IGb/mEMycLdU+wJGw4dWurWUUYs/UrY1S31UxjSqluU5iyGZ9r9wlpp6SNbxFggVuOrdQklMVJKfCJBTzfXKxPa29bcLA7w0Ng4CUIKv+fAJuxJRZQZYEHru3BTI6oeqtvWy+NJNiXBDVpwmp4BAQcus3JtdlZmHE7nJWFeQ1bdbDHoRGQqpsJPCoTruhYJti287GUbrNziWWFrZhrE6ERCCr/n4AcdAl40JeQB/0ZBpXhIVAzjSmV2q+08+cUGoGK+/v1GkAFPils6ASkCat9T8HaBfwRAnY+lupMvbKFQoB7DKU6gc4AXudMcN7/UCqg6DYd1QGDElAdkQXe+xjLIdm6UPCqLRiP2sLy2GUB6XXeXEwswg1PAkpY4GnYqxkTnkT8iJWLRzuXU85DUWnPRbTLOVNs1yZY8BX8N+UDSdQTLEBT6doAAAAASUVORK5CYII=",
+        phone:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAADNklEQVR4nM2XSWgUQRRAx7jggttFb+rBgwoeNAdxiVGIJvb/M1FIwD2oBwPizYO30YALqCAeBE9CNF2/C0TRi3gJopmpngxGcUGCIRKXi4hiXIISR35PV08lziRt0hP8UAxM/an/6tffJhb7n+Rx65ZZyoYGRdiiCM8aq8UVuDslG2eUzXhKblvpEna7hLkR1mslEysiNy5l42SX4Ik2pAj6FGFPYUGfEvjb2xPwMpdMVkQKkBHWusItYU8xHSVwn9ZJS9wQKYBL0KgPz8qauaW8pAR88/QEHo8UoJPi6zVAinB1SVABaV9PRgrwoA3ma4CMY+0tpacEnvfj4FP2SuXUSCEU4Xs/AC+UBoCqQqxYG6MFEODk3xeej5gtAn95eg42RwrgOtAURLmoX1JUh6C2kKq4PVKAtB1fqAgG82+Mx4q6X0C/D/CmLFXRJbjn3+6VWWzSwloeGOdPiWsjN86StiERuNi2ILi9DQ1GOT4VK5fIfEnu9bOhU3shX4TQ9T3wpeO6tbhsEErEDwW3daBJf59tw2Uu4Q8/Rp6WqpjjllwyWaEIHvl94V3Xzfp5es8l62jwRALvRl6MtGQkVgfdj4CCDQ8CL5oQD28lZpv72ds404sZB5u5WI0ZUgm8FNQFwgPDPEQGRJeOCc4O9po5QyiBnxXhDW5g3EVDt/L2q9XT+a39QwYUWZtNCNMTHJiuwNNGneBU/llsqOF5guMpFESWA0/gR32TjJ1YZe5zTDDcECMC+pXArX77rnIJzikBKUX41Zg5ekMXsk5u1QK+a4i0gE3mPo9oRor2s9Fi5/ipXBhqCHaGAvCM2BYYEAOKYP9fh9vQwBVztLO4jPuwJ0IDsKRta40i+GC4W/IcMYa23+Nn15l//a3nbm7XQ4ZXJ74rl4tNmhAAFg4eRXh5WGSnMgQ1YUDGDaCFDeo0NdYLZeORjtYdC2IlhL3mp2lLKZ3Q4gUf4WFX4NshHiEYVAIyLsFJHlxSMr40nwXxel1heRIfN4CW9vbqKXygEnh/lH9WQR1Q1+rmRAZgSlbiIu4DiuAO140iAN1KQmVZjMdKARHUKgcOurZV90w2Tpsw42HkD4uoFM8uZ8etAAAAAElFTkSuQmCC",
+        money:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB8UlEQVR4nO2Xv0sdQRDHNxq0tekiamGbCIY0iY2dmpt5PghamU5SJYrkH3ggCOls8gcI4u24jTYKKYL4g+fModikEhRM9J9IkJN93rs7nzH+uLs1kAwMLLsH89nvfu9uVqk7xjcz2iIEyzbtWLkOMV6vEIa1NF6vcwA28KIOYMf/AVTREehypyzCOyacZsIDJjxOKXAczcUphPtMMJUJQDR+TO3G35kffOLMA2GoHrCGo/Mi8DWsVJrS64UD7BjsqhcItPemcb1wgIDgWQqgzznA5gK0WdOdF/EmnAPYEMKNyAMnW/5wu3INEBjsT1SAE/FxUgy+sgW3F723dQA7tnNV87qnagYe5wrBPr5PIK7P6NkNC5+vEhrXbwti4VWesbdUfmRlvuoImEovWcOH2nFFELkqcVMTWsPGEBrXVRHB17wFNcNGKljlnAME2uuLPeGXnjoHYB9G4vX5oQ6nAGGl0mTPPvqLHuZe/E8AdrdCaBL5cVJl6fu5odFI5aWGRAh/XPhWaFwxZrT5TgDBAnTfugVLgH6KxtnMFxYhGGtsNlP5u6Z0mnVpvPHHVUjwP3cv+OsA5L4vp3ldz88AHDbJqwQmdEAAAAAASUVORK5CYII=",
+        clock:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAADIElEQVR4nNVXO2wTQRA1XwmKiPApoUkClEhpCVCB4xkTmvSB8Ckg4VcgEaTQgKCkAESJIns2V4BEhfiZJMK3YxlooIA2QSKhoUUJMZr7+Nbn8/nsxAUjrXS62Zl5u/PdVOp/o3IOd5cIB5myI6zwlrMoOyL/hNcZoy9wO+dxXBO8Z4IVVliJXAQrzh6VGROZNRsuFI5u1gTnWcGPaKPw011RYHCBp+GcZQ1east40Tq+UxO+NpXK6WyCy0Ur21t+0r/F3/vFGt5q56BPK7iiCWdCIF/N5aC7RePZXlb43TBctC08nFReEwwwgV2VV/itTOmeRMJzOeiuMa7gQWVycmPU3k9Weo+sKF6lktrABLc14aoPoulNFMTnCt64p8ZVTdnRRnsl4jXhb1lx0c8Kz/ogxB2xMaEVXjD8dycOrLagv3pLFvTH7lV4L3Bng0OVJdW8aNcKPzS69nYAiC5WqP3siExRzuO4rzBJwLUCwNGvMkeMoL5Ur5Dc9JFUa6asHQAuCJz1ZAq1jGendjHhssPM43inAOg8XvUrZk3glqS2+9efg75OAShZJw8YBepEoIyyo17O/zUr3HoDkIrpp6St8HSV4XU1QbWYRFEYABM+LVu4L5Ec4ZInMxEAIJzwis9SUgB+ITIi+49W+KgZEK3gl7f/ZvBzGs741U+uKSmIEg3t1QSPxXgNEIKHeirdFecCmSGCG8hn0sF1Du5PtUhy6jAQJrhRty+HByODkI00lJbaKoAwECb4yFbmUJjPCq57/l8WmzVMd5Jx3DCT6hAxwZwH4F09U2XGDD8OrLdxm+BYVX8eL0Y3I8IFz392s2bUCokuTcgegPmiNbytYe/mILfvrhcAJrwf6DWiP0wyLMjQkGQgSUoymAauxZdNh1Q9le5igq9JRrI48kcycy78/HxoRyLhMqV7RMCYjrT081YCThOU2hpKa4dT1x3GmpWWKl3NrJjy7XQ6wmvVVDOuPfHJwyT+cjqlnx31D5NFd0W+lOalxLf9MAmnqIxRUkDin2ZSTeGt5HnDVFsrsZRt6R2hx6n8k9dUR4x2kv4B0jF0xM+jlsAAAAAASUVORK5CYII=",
+        calendar:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR4nO2Wz0sCQRTHrUuHoFMd6tqhjoYQQnSMFt9zr4X/SCCBRw661R9gib5hTp36BxLcWSWjQ0HgzUsnbx5EMJ6764o/djVXSNqBB8vsd77vM293mBeJrMIwCtqWIrgyS/qRn5Y1rOU1wQEQpJXAnkFY99di3dJCOjgAAdm+qcCGvxYblhayv0pWK+KhInxQhO9sZgW0bICOOzc1OjZAy5nrexHmTakfeNMTnCqCNhssJQjaVZE88Sr1p/39eMd3hsAcR4WgMrSrnHdY1eI1zpwScG97MsjHxOTlkr7nkJqEF0H/AxUBl45/rXC+O75QQswR8PPwO0WYst7Bkx8Aa6xyY2pW/5kENdL2v561jYjPYA1rR+cXBlh0rACASMYHAoHNGc77vNF0/ZPxMQCzBPrSzv9IcC7vEgnM+5/3uSP/x/8BGQJACBALAVQIIP4zgJKJqCOoSjgOGoA9BxeSTETHBG+PZ5uKoGu3UzdBJu/1ImsG4a3dGXc510ShEijdaxO+g+oF2Mu9aUFMJX2V2o5BUF5aL0DwUivitne5Mpn1ioCEEngdVC/AXqqU0Nh74e8Z9PgBObb11Eow5TAAAAAASUVORK5CYII=",
+        mail: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAACI0lEQVR4nO2WPWgUURDHn4qICGphYSPYWIkfoJWNCgYvO7NcIafYiJWdWlpYxMYPsLK0TGRvJlsoJnCdhU12Zj00iiAEAippUgmiIMLlZLK72fVyR87LXRr3Bw/u3nv3/r9ZmL3nXElJgZjwijDMKuOCMC4OcyRnwqxO+5ddN4TxkTK2t2QQPugIhxPK0EoX55XhsQkNc9iZyvA+kYDWXDh+bE1ACSdTu1YcVM66EfGGLp6zjLTQyfwJEMxkj0cYfyvh3TCs7RhWsJ1lZ66eneUQzOQCDA+TydQuGRIFcGSz4RFVDwvh60KBqxmWuU5AGT8LQ6Ng+TMiuD1ouDBcU4LveVHwSgi+9BQQxsV2220TghsWnltDQ0PvYL/BzQAPCOPzvBD8pQR32hMT29OW7C3gUrTuHxWGtwX75ZjR3yg8qvtjSrhUkP+ooXcyz+pTwGg+PbVTCe5J1qKJyNT81Nge18FcWNstDE+EcCWtesW+LzQqu4r7/kkgIybvTPbDbJ/NZetaHz8tDJ8KVX8V9s67LgwkYLx7Ud0vDEFnu65rL4bA9roeDCyQIdP+VSH41vl6tTlbcxuwaQEjpuoha6lie9mc64OhCBjWUkr+dRv22fXJ0AQGpRSQUoC7CGgdb6UCP+RZZe+owpvhhX35n5x3c20hqvvH8/e9XZtGdCUj/JBW//eVrONOsBXjvuuGMtTS69lIruXK+DJivNQ1vOS/5Q+wRb9+JeOV9wAAAABJRU5ErkJggg==",
+        user: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO1Xv2tTURR+WrVODuqgm9XFRRzioCDWQWqac4JFCEodFEXUUfwDWgURV/Hn5BDTc3KttVPXbM054WkVxB+lndRRXZQiFCM3uS+JpY88m5ui6AcHHrnfPd+X88598YLgP1aI0sP+jWEBd9uYnUr3BqsFYdirBE+VcUEZqy4WhPHJtBnc01VxpewZIfjeIvxL1MaKcLor4kI4oASLTuyzEoyWCQ7bUIarQvClNkawWGE44lXcmFyPML6rC+AHMdm+pZxKAXYqw0dXibd2jjcDyplDjTIzDsXxKpQ5HvHKBg96NABXnPjXUql/XRwvfJBaLwTfatwxvOzPAMFoVP4EZmuvwc7xZkAYL0QNNm0GNsfxwgJubTRqEc57MxBSeldLD1yL4ynj9XoT4o/lGrUjCONEVAUt4sVqNVgTjdlnJbjU+PcE44FvhPmj220PtGw8r4XgjjDeFYY3Lb+/V5PZFnQDYrJ9QjgTtxMqYVimYzuCbsKYXE+Z4aQwsDK8VMIX9rlCeKI6MrK2q+L/LnRiaIs9asVAKklYrp3TkWjVLi2GU8LwPLbp2gXBMyUcbl2yifDK5DYoo1mx8NJ7AgPbcyKxASW437xk4IwU4axwdn/SV6AGDwhlz9VWSfOyci+Z+NjgPruVuomPf8v5cpUkGG9uz5Bqb4DhtttUPkk+vSnoEDaHzeVM3EpgAMWR852KN0wQPnJNWW5PZpxzFbjpy4DN5U7SuSQG5l3n3vBlwOZyBub/fAPKMOlewbAvAzZXfVXBZFvy7FS6196AAs+wOVf1Ey74W/ATwyNYfvVeM0EAAAAASUVORK5CYII=",
+        clipboard:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABiElEQVR4nO2XP0pDQRDGg6WCNhZ6B7HxCoqSmVdJvIXmCEGDRvQUJpgZY2xyBUPerqQIYhVIZSoR0igIopF9uy+CxOy++BACOzDN8s03v/1TzGYysxLtS1wOCfKC8XRSKo3Spt5cEvYl49AxH1OFCAnykTHhu2DsTUqlibRVPJh+xw2cFwRFQdDUxjBQpoLh2VarNEY7iGq1x5HydGreKW8tCIaHX472zVavNGNrCe+dIARBMdoB4adkvNaPK2gZkydRg41JqTT6BIKWqpUEdeM1lAyHLgBN3Qzqo11dBXsJHqBJyI08GW+M560dgLFn7rAUrw0LhTnJUHZuTnihar49oaQ9sTcVQBztyvaq9Qpq2ZXMj0gNYNrwAMIDsAcAD1DyANIDsAfAGQGQjF0zUp2lBSAZzs201LWKBUHDjFUdUdlZ/Gvzdm1zSU3EetCFhgttLp7tBMGr7SPikC+xX8i460QtCU8Ew0fySXh8Gq/jREcXVoN19b2yfUZtKTm7f8ewlqj5f8YXGhMqvOAx8WkAAAAASUVORK5CYII=",
+        send: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC+UlEQVR4nOWWPWgUQRTH1y9EET9AQVEQBQtBYuFHE4NohLvce2dsUmhAEGyshIBaWCSk0cqgaCEKivHuPRdMQCV+gQE12Td3p2liEwW1CZpCJUENwXgym9nc5rK35nQvFv5hOW53Zn5v3teMZf1PGuiKL3QImzKE93ttWDsrUNtumKcIaxXDVcUwrBjzEw90VRSctWGnImwTxsEC1PfY2BQ51KHEZmFsVQSvi4HC8NO3+2Edjkig0h5f5xAcF4Ln03ZJ8E0RPnF/XSPQNUIIrvwV9FkKVgjDYSF8LAzjU3ZKOCoMd/X3Fzr2ZOJOMDo5Jp3cWza0125YpBgaJhbHsSL3jmsPaE/kUrhSj89ystqDC8FXxfDQeGFQJ+aMoANd8YUZxqRiuKEIRgJc/EoRnMq1x9b45xXDezgWE8IvJv7nQqH55ua5jo27hOG8EA6VgLY4KdgUNL8YLpzYoz3nzc8w7ggEq3Td9pCyeScMZ5x0cirM+CC4fi+Mt4373wTDCQ9Nh8JHxXBRL5rPW3NC3RYCz9n7linG78aA1mADGBoD6vZahmHL78BhcC2H8Yi3pu4TJRdx3Lhjh7+shHTd6uyFWCkvhMHN5h6Ztfpmshkrk4KNwnhWCD4XeWXALbM7uHjGcDuxWhH8MAacsMqRtMeXmg73vqjRDLkGMh4Ig2vp+Z4ne24m1lt/otzlbQvkVvKgMGQDDxWCESGoCZqrCBwz7qkVhYSgxuTJ5MHipGF/yVC6OeQaecyKUlmuq1ZeshK0BI1RhKdN6Y29tOOrrKgljB1eTuhzYvp36Ddeuhc53AuHLxeOWj4Jw1ZfQ2u0KiUhVKZp9fv7hK4Srzq67YYlFTNATWnhENPvtCGK4a0xjK1Kqrt793yvTwjhA6+jFnpGst6qtIThZKEkk1VCcMn8/xTZvS9MfZ31y73LihBeVwwfIrn3lSMhvFA4vLwOibXWbEns5Abv0Cn73heVFEGnb/dt1mzL8WW/vt5Z/0LKvVlVsPNVQr8AYD8n/fSbEhkAAAAASUVORK5CYII=",
+      };
+
+      function icon(name, alt) {
+        return `<img src="${ICONS[name]}" alt="${alt || name}" width="16" height="16" style="vertical-align:middle; display:inline-block; margin-right:4px;">`;
       }
 
       function buildEmailFrame(
@@ -1669,44 +1687,52 @@
         staffName,
       ) {
         return `
-      <div style="font-family:'Pretendard',-apple-system,sans-serif; max-width:600px; margin:0 auto;">
-        <div style="background:linear-gradient(135deg,#201F24 0%,#141414 100%); color:white; padding:35px 30px; border-radius:16px 16px 0 0; text-align:center;">
-          <img src="https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/logo_light.png" alt="인피니트 솔루션" style="width:120px; height:auto; margin-bottom:15px;">
-          <h2 style="margin:0; font-size:22px; font-weight:700;">${e(headerTitle)}</h2>
-          <p style="margin:12px 0 0; opacity:0.95; font-size:14px;">인피니트 솔루션 정책자금 전문상담</p>
+      <div style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif; max-width:580px; margin:0 auto; background:#ffffff;">
+        <div style="background:#1a1a1a; padding:32px 36px;">
+          <p style="margin:0; color:#ffffff; font-size:13px; font-weight:300; letter-spacing:5px; text-transform:uppercase;">INFINITE SOLUTIONS</p>
+          <p style="margin:6px 0 0; color:#888888; font-size:10px; letter-spacing:2px; text-transform:uppercase;">Consultation Alert</p>
         </div>
-        <div style="background:#fef3c7; padding:12px 20px; text-align:center; border-left:1px solid #e5e7eb; border-right:1px solid #e5e7eb;">
-          <p style="margin:0; color:#92400e; font-size:12px; line-height:1.6;">📧 본 메일은 발신전용으로 회신이 불가합니다.<br>문의는 <strong>1844-0621</strong> 또는 <strong>gangang901@gmail.com</strong>으로 연락주세요.</p>
+        <div style="background:#f5f0e8; padding:10px 36px; border-left:3px solid #313036;">
+          <p style="margin:0; color:#555555; font-size:11px; line-height:1.6;">본 메일은 발신전용입니다. 문의: <strong>1844-0621</strong> | gangang901@gmail.com</p>
         </div>
-        <div style="background:white; padding:35px 30px; border:1px solid #e5e7eb; border-top:none;">
-          <div style="background:#F5F5F5; padding:24px; border-radius:12px; margin-bottom:25px; border-left:4px solid #313036;">
+        <div style="padding:36px 36px 28px; border-bottom:1px solid #eeeeee;">
+          <p style="margin:0 0 6px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#777777;">CONFIRMATION</p>
+          <p style="margin:0 0 16px; font-size:20px; font-weight:400; color:#1a1a1a; line-height:1.4;">${e(headerTitle)}</p>
+          <div style="background:#f9f9f9; padding:20px; border-left:3px solid #c9a84c; margin-bottom:20px;">
             <p style="margin:0; color:#404040; line-height:1.8; font-size:14px;">${greeting}</p>
           </div>
-          <div style="background:linear-gradient(135deg,#201F24 0%,#141414 100%); padding:24px; border-radius:12px; margin-bottom:25px; box-shadow:0 4px 15px rgba(0,0,0,0.25);">
-            <h3 style="color:white; margin:0 0 18px; font-size:16px; font-weight:600;">📋 접수 내용</h3>
-            <table style="width:100%; color:white; font-size:12px; border-collapse:separate; border-spacing:0 6px;">
-              <tr><td style="padding:8px 12px; background:rgba(255,255,255,0.15); border-radius:8px 0 0 8px; width:35%; white-space:nowrap;">🏢 기업명</td><td style="padding:8px 12px; background:rgba(255,255,255,0.1); border-radius:0 8px 8px 0; font-weight:600;">${e(lead.company)}</td></tr>
-              <tr><td style="padding:8px 12px; background:rgba(255,255,255,0.15); border-radius:8px 0 0 8px; white-space:nowrap;">📞 연락처</td><td style="padding:8px 12px; background:rgba(255,255,255,0.1); border-radius:0 8px 8px 0; font-weight:600;">${e(lead.phone)}</td></tr>
-              <tr><td style="padding:8px 12px; background:rgba(255,255,255,0.15); border-radius:8px 0 0 8px; white-space:nowrap;">💰 희망자금</td><td style="padding:8px 12px; background:rgba(255,255,255,0.1); border-radius:0 8px 8px 0; font-weight:600;">${e(lead.amount)}</td></tr>
-              <tr><td style="padding:8px 12px; background:rgba(255,255,255,0.15); border-radius:8px 0 0 8px; white-space:nowrap;">⏰ 연락시간</td><td style="padding:8px 12px; background:rgba(255,255,255,0.1); border-radius:0 8px 8px 0; font-weight:600;">${e(lead.callTime)}</td></tr>
-              ${deadline ? `<tr><td style="padding:8px 12px; background:rgba(255,255,255,0.15); border-radius:8px 0 0 8px; white-space:nowrap;">📅 마감일</td><td style="padding:8px 12px; background:rgba(255,255,255,0.1); border-radius:0 8px 8px 0; font-weight:600;">${e(deadline)}</td></tr>` : ""}
-            </table>
-          </div>
-          ${extraSection}
-          <div style="background:#F5F5F5; padding:20px 24px; border-radius:12px; margin-bottom:25px; border-left:4px solid #313036; text-align:center;">
-            <p style="margin:0; color:#313036; font-weight:600; font-size:15px; line-height:1.7;">${ctaMessage}</p>
-          </div>
-          <div style="text-align:center; padding:20px 0; border-top:1px dashed #e5e7eb;">
-            <p style="margin:0 0 15px; color:#6b7280; font-size:13px;">문의사항은 아래 연락처로 연락주세요</p>
-            <p style="margin:0 0 6px; color:#374151; font-size:13px;">📞 <strong>1844-0621</strong></p>
-            <p style="margin:0; color:#374151; font-size:13px;">✉️ <strong>gangang901@gmail.com</strong></p>
-          </div>
         </div>
-        <div style="text-align:center; padding:20px 12px; background:#201F24; border-radius:0 0 16px 16px; color:white;">
-          <p style="margin:0 0 6px; font-weight:700; font-size:14px;">인피니트 솔루션</p>
-          <p style="margin:0 0 4px; opacity:0.85; font-size:12px;">중소기업 성장의 든든한 파트너</p>
-          <p style="margin:10px 0 0; opacity:0.7; font-size:10px;">※ 본 메일은 발신전용으로 회신이 불가합니다.</p>
-          <p style="margin:4px 0 0; opacity:0.7; font-size:10px;">문의: 1844-0621 | gangang901@gmail.com</p>
+        <div style="padding:28px 36px; border-bottom:1px solid #eeeeee;">
+          <p style="margin:0 0 16px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#777777;">SUBMISSION DETAILS</p>
+          <table style="width:100%; border-collapse:collapse;">
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:10px 0; font-size:11px; color:#999999; width:35%; letter-spacing:0.5px;">${icon("building", "기업")}기업명</td>
+              <td style="padding:10px 0; font-size:13px; color:#1a1a1a; font-weight:500;">${e(lead.company)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:10px 0; font-size:11px; color:#999999;">${icon("phone", "연락처")}연락처</td>
+              <td style="padding:10px 0; font-size:13px; color:#1a1a1a; font-weight:500;">${e(lead.phone)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:10px 0; font-size:11px; color:#999999;">${icon("money", "자금")}희망자금</td>
+              <td style="padding:10px 0; font-size:13px; color:#1a1a1a;">${e(lead.amount)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:10px 0; font-size:11px; color:#999999;">${icon("clock", "시간")}연락시간</td>
+              <td style="padding:10px 0; font-size:13px; color:#1a1a1a;">${e(lead.callTime)}</td>
+            </tr>
+            ${deadline ? `<tr><td style="padding:10px 0; font-size:11px; color:#999999;">${icon("calendar", "마감")}마감일</td><td style="padding:10px 0; font-size:13px; color:#1a1a1a;">${e(deadline)}</td></tr>` : ""}
+          </table>
+        </div>
+        ${extraSection}
+        <div style="padding:24px 36px; background:#f9f9f9; border-bottom:1px solid #eeeeee;">
+          <p style="margin:0; color:#313036; font-weight:500; font-size:14px; line-height:1.7; text-align:center;">${ctaMessage}</p>
+        </div>
+        <div style="padding:20px 36px; background:#fafafa; border-bottom:1px solid #eeeeee;">
+          <p style="margin:0; font-size:12px; color:#555555; line-height:1.6;">문의: <strong style="color:#1a1a1a;">1844-0621</strong> &nbsp;|&nbsp; gangang901@gmail.com</p>
+        </div>
+        <div style="padding:16px 36px; background:#fafafa;">
+          <p style="margin:0; font-size:10px; color:#aaaaaa; letter-spacing:0.5px;">INFINITE SOLUTIONS &nbsp;&nbsp; 본 메일은 발신전용으로 회신이 불가합니다.</p>
         </div>
       </div>`;
       }
@@ -1722,29 +1748,44 @@
         };
 
         return `
-      <div style="font-family:'Pretendard',-apple-system,sans-serif; max-width:600px; margin:0 auto;">
-        <div style="background:linear-gradient(135deg,#201F24 0%,#141414 100%); color:white; padding:30px; border-radius:16px 16px 0 0;">
-          <h2 style="margin:0; font-size:24px; font-weight:700;">📧 이메일 발송 알림</h2>
-          <p style="margin:10px 0 0; opacity:0.95; font-size:14px;">관리자 대시보드에서 발송됨 (${templateLabels[currentTemplate]})</p>
+      <div style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif; max-width:580px; margin:0 auto; background:#ffffff;">
+        <div style="background:#1a1a1a; padding:18px 32px;">
+          <p style="margin:0; color:#ffffff; font-size:13px; font-weight:300; letter-spacing:5px; text-transform:uppercase;">INFINITE SOLUTIONS</p>
+          <p style="margin:4px 0 0; color:#666666; font-size:10px; letter-spacing:2px; text-transform:uppercase;">Email Sent &middot; ${templateLabels[currentTemplate]}</p>
         </div>
-        <div style="background:white; padding:30px; border:1px solid #e5e7eb; border-top:none;">
-          <div style="background:#F5F5F5; padding:20px; border-radius:12px; margin-bottom:25px; border-left:4px solid #313036;">
-            <h3 style="color:#313036; margin:0 0 15px; font-size:18px;">📋 발송 대상</h3>
-            <table style="width:100%;">
-              <tr><td style="padding:8px 0; color:#525252; width:40%; white-space:nowrap;">👤 이름</td><td style="color:#374151;">${e(lead.name)}</td></tr>
-              <tr><td style="padding:8px 0; color:#525252; white-space:nowrap;">🏢 기업명</td><td style="color:#313036; font-weight:600;">${e(lead.company)}</td></tr>
-              <tr><td style="padding:8px 0; color:#525252; white-space:nowrap;">📞 연락처</td><td style="color:#374151;">${e(lead.phone)}</td></tr>
-              <tr><td style="padding:8px 0; color:#525252; white-space:nowrap;">✉️ 이메일</td><td style="color:#374151;">${e(lead.email)}</td></tr>
-              <tr><td style="padding:8px 0; color:#525252; white-space:nowrap;">💰 희망자금</td><td style="color:#374151;">${e(lead.amount)}</td></tr>
-            </table>
-          </div>
-          <div style="background:#EFF6FF; padding:14px 20px; border-radius:8px; border-left:4px solid #3B82F6;">
-            <p style="margin:0; font-size:13px; color:#1E40AF;">발송자: ${e(staffName)} | 템플릿: ${templateLabels[currentTemplate]}</p>
-          </div>
+        <div style="background:#f5f0e8; border-left:3px solid #313036; padding:9px 24px; font-size:12px; color:#6b5b3e;">
+          ${icon("send", "발송")} 관리자 대시보드에서 이메일 발송됨
         </div>
-        <div style="text-align:center; padding:20px; background:#201F24; border-radius:0 0 16px 16px; color:white; font-size:12px;">
-          <p style="margin:0; font-weight:600;">인피니트 솔루션 관리자 시스템</p>
-          <p style="margin:5px 0 0; opacity:0.9; font-size:11px;">※ 관리자 대시보드에서 자동 발송된 알림입니다.</p>
+        <div style="padding:24px 28px 20px;">
+          <p style="margin:0 0 10px; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#777; padding-bottom:7px; border-bottom:1px solid #f0f0f0;">RECIPIENT</p>
+          <table style="width:100%; border-collapse:collapse;">
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:8px 0; font-size:11px; color:#999; width:35%;">${icon("user", "이름")}이름</td>
+              <td style="padding:8px 0; font-size:13px; color:#1a1a1a;">${e(lead.name)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:8px 0; font-size:11px; color:#999;">${icon("building", "기업")}기업명</td>
+              <td style="padding:8px 0; font-size:13px; color:#313036; font-weight:600;">${e(lead.company)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:8px 0; font-size:11px; color:#999;">${icon("phone", "연락처")}연락처</td>
+              <td style="padding:8px 0; font-size:13px; color:#1a1a1a;">${e(lead.phone)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f0f0f0;">
+              <td style="padding:8px 0; font-size:11px; color:#999;">${icon("mail", "이메일")}이메일</td>
+              <td style="padding:8px 0; font-size:13px; color:#1a1a1a;">${e(lead.email)}</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 0; font-size:11px; color:#999;">${icon("money", "자금")}희망자금</td>
+              <td style="padding:8px 0; font-size:13px; color:#1a1a1a;">${e(lead.amount)}</td>
+            </tr>
+          </table>
+        </div>
+        <div style="background:#fafafa; border-top:1px solid #f0f0f0; padding:12px 28px;">
+          <p style="margin:0; font-size:11px; color:#888; letter-spacing:0.3px;">발송자: ${e(staffName)} | 템플릿: ${templateLabels[currentTemplate]}</p>
+        </div>
+        <div style="background:#fafafa; padding:12px 28px; text-align:center; border-top:1px solid #f0f0f0;">
+          <p style="margin:0; font-size:10px; color:#aaa; letter-spacing:0.3px;">INFINITE SOLUTIONS 관리자 시스템 자동 알림</p>
         </div>
       </div>`;
       }
