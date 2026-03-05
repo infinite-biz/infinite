@@ -577,6 +577,28 @@ async function handleBoardAPI(request, env, path) {
     try {
       const url = new URL(request.url);
       const limit = parseInt(url.searchParams.get("limit")) || 0;
+      const noCache = url.searchParams.get("nocache") === "1";
+      const CACHE_KEY = "board_posts_cache";
+      const CACHE_TTL = 300; // 5분
+
+      // KV 캐시 확인 (nocache 파라미터가 없을 때)
+      if (!noCache && env.OTP_KV) {
+        const cached = await env.OTP_KV.get(CACHE_KEY);
+        if (cached) {
+          let parsed = JSON.parse(cached);
+          if (limit > 0) {
+            parsed.records = parsed.records.slice(0, limit);
+            parsed.posts = parsed.posts.slice(0, limit);
+          }
+          return new Response(JSON.stringify(parsed), {
+            headers: {
+              ...CORS_HEADERS,
+              "Content-Type": "application/json",
+              "X-Cache": "HIT",
+            },
+          });
+        }
+      }
 
       const airtableResponse = await fetch(
         `https://api.airtable.com/v0/${env.AIRTABLE_BASE_ID}/board2?sort[0][field]=date&sort[0][direction]=desc`,
@@ -607,8 +629,6 @@ async function handleBoardAPI(request, env, path) {
         slug: record.fields["slug"] || "",
       }));
 
-      if (limit > 0) records = records.slice(0, limit);
-
       // post.html 관련글에서 사용하는 영문키 posts 배열도 함께 반환
       const posts = records.map((r) => ({
         id: r.id,
@@ -624,8 +644,24 @@ async function handleBoardAPI(request, env, path) {
         slug: r.slug,
       }));
 
+      // KV 캐시 저장 (전체 데이터)
+      if (env.OTP_KV) {
+        await env.OTP_KV.put(CACHE_KEY, JSON.stringify({ records, posts }), {
+          expirationTtl: CACHE_TTL,
+        });
+      }
+
+      if (limit > 0) {
+        records = records.slice(0, limit);
+        posts.splice(limit);
+      }
+
       return new Response(JSON.stringify({ records, posts }), {
-        headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+        headers: {
+          ...CORS_HEADERS,
+          "Content-Type": "application/json",
+          "X-Cache": "MISS",
+        },
       });
     } catch (error) {
       return new Response(JSON.stringify({ error: error.message }), {
@@ -674,6 +710,8 @@ async function handleBoardAPI(request, env, path) {
       }
 
       const result = await airtableResponse.json();
+      // 캐시 무효화
+      if (env.OTP_KV) await env.OTP_KV.delete("board_posts_cache");
       return new Response(JSON.stringify({ success: true, id: result.id }), {
         headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
       });
@@ -749,6 +787,8 @@ async function handleBoardAPI(request, env, path) {
       }
 
       const result = await airtableResponse.json();
+      // 캐시 무효화
+      if (env.OTP_KV) await env.OTP_KV.delete("board_posts_cache");
       return new Response(JSON.stringify({ success: true, id: result.id }), {
         headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
       });
@@ -809,6 +849,8 @@ async function handleBoardAPI(request, env, path) {
       }
 
       const result = await airtableResponse.json();
+      // 캐시 무효화
+      if (env.OTP_KV) await env.OTP_KV.delete("board_posts_cache");
       return new Response(
         JSON.stringify({ success: true, deleted: true, id: result.id }),
         {

@@ -44,6 +44,14 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- 정책자금 소식 (게시판) -->
+    <url>
+        <loc>https://infinites.co.kr/board</loc>
+        <lastmod>2026-03-05</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- 마케팅뉴스 (게시판 목록) -->
     <url>
         <loc>https://infinites.co.kr/marketing</loc>

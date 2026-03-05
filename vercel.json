@@ -10,15 +10,26 @@
   ],
   "redirects": [
     {
-      "source": "/",
+      "source": "/:path(.*)",
       "has": [
         {
           "type": "host",
           "value": "admin.infinites.co.kr"
         }
       ],
-      "destination": "/admin/",
+      "destination": "https://infinites.co.kr/admin/:path",
       "permanent": false
+    },
+    {
+      "source": "/:path((?!admin).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.infinites.co.kr"
+        }
+      ],
+      "destination": "https://infinites.co.kr/:path",
+      "permanent": true
     },
     {
       "source": "/posts/:slug",

@@ -31,7 +31,7 @@
       content="정책자금, 정책자금 컨설팅, 중소기업 정책자금, 정부지원자금, 맞춤 사전진단, 역량평가, 자금전략 수립, 정책자금 승인률, 기업심사관, 인피니트 솔루션"
     />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://infinites.co.kr/about.html" />
+    <link rel="canonical" href="https://infinites.co.kr/about" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -50,7 +50,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:url" content="https://infinites.co.kr/about.html" />
+    <meta property="og:url" content="https://infinites.co.kr/about" />
     <meta property="og:site_name" content="인피니트 솔루션" />
     <meta property="og:locale" content="ko_KR" />
 
@@ -98,7 +98,7 @@
               "streetAddress": "달서대로 666, A83호",
               "addressLocality": "달서구",
               "addressRegion": "대구광역시",
-              "postalCode": "16073",
+              "postalCode": "42601",
               "addressCountry": "KR"
             },
             "founder": {
@@ -111,7 +111,7 @@
             "@type": "ProfessionalService",
             "name": "인피니트 솔루션 정책자금 컨설팅",
             "description": "중소기업 정책자금 전문 컨설팅 회사. 맞춤 사전진단부터 자금 실행까지 전 과정 지원하며, 현장 방문 점검을 통해 95% 승인률을 기록합니다.",
-            "url": "https://infinites.co.kr/about.html",
+            "url": "https://infinites.co.kr/about",
             "provider": {
               "@id": "https://infinites.co.kr/#organization"
             },
@@ -177,7 +177,7 @@
                 "@type": "ListItem",
                 "position": 2,
                 "name": "회사소개",
-                "item": "https://infinites.co.kr/about.html"
+                "item": "https://infinites.co.kr/about"
               }
             ]
           },
@@ -185,7 +185,7 @@
             "@type": "WebPage",
             "name": "회사소개 | 인피니트 솔루션",
             "description": "인피니트 솔루션은 맞춤 사전진단부터 정책자금 실행까지 전 과정을 지원하는 전문 컨설팅 회사입니다.",
-            "url": "https://infinites.co.kr/about.html",
+            "url": "https://infinites.co.kr/about",
             "isPartOf": {
               "@type": "WebSite",
               "name": "인피니트 솔루션",
@@ -1094,7 +1094,7 @@
               실행 후 지속 관리
             </h3>
             <p class="feature-text" data-editable="about-system-feature4-desc">
-              올해 실행 이후 내년<br />추가 자금설계까지 동행합니다
+              올해 실행 이후 내년<br />추가 자금설계 지속관리
             </p>
             <ul class="feature-checklist">
               <li data-editable="about-system-feature4-check1">
@@ -1230,7 +1230,7 @@
                 class="feature-text"
                 data-editable="about-system-feature4-desc-mobile"
               >
-                올해 실행 이후 내년<br />추가 자금설계까지 동행합니다
+                올해 실행 이후 내년<br />추가 자금설계 지속관리
               </p>
               <ul class="feature-checklist">
                 <li data-editable="about-system-feature4-check1-mobile">
@@ -1750,7 +1750,7 @@
               지속 관리 및 자금연계
             </h4>
             <p data-editable="about-category-card4-desc">
-              금년 실행 후 차년 추가 자금설계까지 동행합니다
+              금년 실행 후 차년 추가 자금설계 지속관리
             </p>
             <div class="category-tags">
               <span class="category-tag">재신청 적격 상태 점검</span>
@@ -1795,7 +1795,7 @@
 
             <div class="swipe-card">
               <h4>지속 관리 및 자금연계</h4>
-              <p>금년 실행 후 차년 추가 자금설계까지 동행합니다</p>
+              <p>금년 실행 후 차년 추가 자금설계 지속관리</p>
               <div class="category-tags">
                 <span class="category-tag">재신청 적격 상태 점검</span>
                 <span class="category-tag">재무 안정성 연간 모니터링</span>
@@ -3848,115 +3848,140 @@
         errorMessage.classList.remove("active");
 
         try {
-          // 고객용 이메일 HTML (인피니트 솔루션 브랜드 Black & White 컬러)
+          // 고객용 이메일 HTML (데이원디자인 스타일 에디토리얼)
           const customerEmailHTML = `
-      <div style="font-family: 'Pretendard', -apple-system, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #201F24 0%, #141414 100%); color: white; padding: 35px 30px; border-radius: 16px 16px 0 0; text-align: center;">
-          <img src="https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev/logo_light.png" alt="인피니트 솔루션" style="width: 120px; height: auto; margin-bottom: 15px;">
-          <h2 style="margin: 0; font-size: 22px; font-weight: 700;">무료진단 신청이 접수되었습니다</h2>
-          <p style="margin: 12px 0 0 0; opacity: 0.95; font-size: 14px; font-weight: 500;">인피니트 솔루션 정책자금 전문상담</p>
+      <div style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; max-width: 580px; margin: 0 auto; background: #ffffff;">
+        <div style="background: #1a1a1a; padding: 32px 36px;">
+          <p style="margin: 0; color: #ffffff; font-size: 13px; font-weight: 300; letter-spacing: 5px; text-transform: uppercase;">INFINITE SOLUTIONS</p>
+          <p style="margin: 6px 0 0 0; color: #888888; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Consultation Alert</p>
         </div>
 
-        <div style="background: #fef3c7; padding: 12px 20px; text-align: center; border-left: 1px solid #e5e7eb; border-right: 1px solid #e5e7eb;">
-          <p style="margin: 0; color: #92400e; font-size: 12px; line-height: 1.6;">📧 본 메일은 발신전용으로 회신이 불가합니다.<br>문의는 <strong>1844-0621</strong> 또는<br><strong>gangang901@gmail.com</strong>으로 연락주세요.</p>
+        <div style="background: #f5f0e8; padding: 10px 36px; border-left: 3px solid #313036;">
+          <p style="margin: 0; color: #555555; font-size: 11px; line-height: 1.6;">본 메일은 발신전용입니다. 문의: <strong>1844-0621</strong> | gangang901@gmail.com</p>
         </div>
 
-        <div style="background: white; padding: 35px 30px; border: 1px solid #e5e7eb; border-top: none;">
-          <div style="background: #F5F5F5; padding: 24px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #313036;">
-            <p style="margin: 0 0 12px 0; font-size: 16px; color: #313036;">안녕하세요, <strong style="color: #313036;">${form.name.value}</strong>님! 👋</p>
-            <p style="margin: 0; color: #404040; line-height: 1.8; font-size: 14px;">정책자금 심사신청이 정상적으로<br>접수되었습니다.<br><br>영업일기준 24시간 이내<br>담당 전문 컨설턴트가 연락드리겠습니다.</p>
-          </div>
-
-          <div style="background: linear-gradient(135deg, #201F24 0%, #141414 100%); padding: 24px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);">
-<h3 style="color: white; margin: 0 0 18px 0; font-size: 16px; font-weight: 600;">📋 접수 내용</h3>
-            <table style="width: 100%; color: white; font-size: 12px; border-collapse: separate; border-spacing: 0 6px;">
-              <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; width: 35%; white-space: nowrap;">🏢 기업명</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">${form.company.value}</td></tr>
-              <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; white-space: nowrap;">📞 연락처</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">${form.phone.value}</td></tr>
-              <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; white-space: nowrap;">💰 희망자금</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">${form.amount.value || "미선택"}</td></tr>
-              <tr><td style="padding: 8px 12px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; white-space: nowrap;">⏰ 연락시간</td><td style="padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 600;">${form.consultTime.value}</td></tr>
-            </table>
-          </div>
-
-          <div style="background: #F5F5F5; padding: 20px 24px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #313036; text-align: center;">
-            <p style="margin: 0; color: #313036; font-weight: 600; font-size: 15px; line-height: 1.7;">영업일기준 <strong style="color: #313036;">24시간 이내</strong>에<br>인피니트 솔루션에서 연락드리겠습니다.</p>
-          </div>
-
-          <div style="text-align: center; padding: 20px 0; border-top: 1px dashed #e5e7eb;">
-            <p style="margin: 0 0 15px 0; color: #6b7280; font-size: 13px;">문의사항이 있으시면 아래 연락처로 연락주세요</p>
-            <div style="display: inline-block; background: #f3f4f6; padding: 10px 20px; border-radius: 8px; text-align: center;">
-              <p style="margin: 0 0 6px 0; color: #374151; font-size: 13px;">📞 <strong>1844-0621</strong></p>
-              <p style="margin: 0; color: #374151; font-size: 13px;">✉️ <strong>gangang901@gmail.com</strong></p>
-            </div>
-          </div>
+        <div style="padding: 36px 36px 28px 36px; border-bottom: 1px solid #eeeeee;">
+          <p style="margin: 0 0 6px 0; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #777777;">CONFIRMATION</p>
+          <p style="margin: 0 0 16px 0; font-size: 20px; font-weight: 400; color: #1a1a1a; line-height: 1.4;">${form.name.value} 님의 무료진단 신청이<br>정상 접수되었습니다.</p>
+          <p style="margin: 0; font-size: 13px; color: #555555; line-height: 1.7;">영업일 기준 24시간 이내 담당 컨설턴트가 연락드리겠습니다.</p>
         </div>
 
-        <div style="text-align: center; padding: 20px 12px; background: #201F24; border-radius: 0 0 16px 16px; color: white;">
-          <p style="margin: 0 0 6px 0; font-weight: 700; font-size: 14px;">인피니트 솔루션</p>
-          <p style="margin: 0 0 4px 0; opacity: 0.85; font-size: 12px;">중소기업 성장의 든든한 파트너</p>
-          <p style="margin: 10px 0 0 0; opacity: 0.7; font-size: 10px;">※ 본 메일은 발신전용으로 회신이 불가합니다.</p>
-          <p style="margin: 4px 0 0 0; opacity: 0.7; font-size: 10px; white-space: nowrap;">문의: 1844-0621 | gangang901@gmail.com</p>
+        <div style="padding: 28px 36px; border-bottom: 1px solid #eeeeee;">
+          <p style="margin: 0 0 16px 0; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #777777;">SUBMISSION DETAILS</p>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr style="border-bottom: 1px solid #f0f0f0;">
+              <td style="padding: 10px 0; font-size: 11px; color: #999999; width: 35%; letter-spacing: 0.5px;">기업명</td>
+              <td style="padding: 10px 0; font-size: 13px; color: #1a1a1a; font-weight: 500;">${form.company.value}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #f0f0f0;">
+              <td style="padding: 10px 0; font-size: 11px; color: #999999;">연락처</td>
+              <td style="padding: 10px 0; font-size: 13px; color: #1a1a1a; font-weight: 500;">${form.phone.value}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #f0f0f0;">
+              <td style="padding: 10px 0; font-size: 11px; color: #999999;">희망자금</td>
+              <td style="padding: 10px 0; font-size: 13px; color: #1a1a1a;">${form.amount.value || "미선택"}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; font-size: 11px; color: #999999;">연락희망시간</td>
+              <td style="padding: 10px 0; font-size: 13px; color: #1a1a1a;">${form.consultTime.value}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="padding: 20px 36px; background: #fafafa; border-bottom: 1px solid #eeeeee;">
+          <p style="margin: 0; font-size: 12px; color: #555555; line-height: 1.6;">문의: <strong style="color: #1a1a1a;">1844-0621</strong> &nbsp;|&nbsp; gangang901@gmail.com</p>
+        </div>
+
+        <div style="padding: 16px 36px; background: #fafafa;">
+          <p style="margin: 0; font-size: 10px; color: #aaaaaa; letter-spacing: 0.5px;">INFINITE SOLUTIONS &nbsp;&nbsp; 본 메일은 발신전용으로 회신이 불가합니다.</p>
         </div>
       </div>
             `;
 
-          // 담당자용 이메일 HTML (인피니트 솔루션 브랜드 Black & White 컬러)
+          // 담당자용 이메일 HTML (데이원디자인 스타일 — 압축형)
           const staffEmailHTML = `
-      <div style="font-family: 'Pretendard', -apple-system, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #201F24 0%, #141414 100%); color: white; padding: 30px; border-radius: 16px 16px 0 0;">
-          <h2 style="margin: 0; font-size: 24px; font-weight: 700;">🔔 인피니트 솔루션 신규 무료진단 신청</h2>
-          <p style="margin: 10px 0 0 0; opacity: 0.95; font-size: 14px;">💻 홈페이지 접수</p>
+      <div style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; max-width: 580px; margin: 0 auto; background: #ffffff; overflow: hidden;">
+        <div style="background: #1a1a1a; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0; color: #ffffff; font-size: 13px; font-weight: 300; letter-spacing: 5px; text-transform: uppercase;">INFINITE SOLUTIONS</p>
+          <p style="margin: 0; color: #666666; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">New Lead Alert</p>
         </div>
 
-        <div style="background: white; padding: 30px; border: 1px solid #e5e7eb; border-top: none;">
-          <div style="background: #F5F5F5; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #313036;">
-            <h3 style="color: #313036; margin: 0 0 15px 0; font-size: 18px; border-bottom: 2px solid #313036; padding-bottom: 8px; display: inline-block;">📋 기업 정보</h3>
-            <table style="width: 100%;">
-              <tr><td style="padding: 8px 0; color: #525252; width: 40%; white-space: nowrap;">🏢 기업명</td><td style="font-weight: 600; color: #313036;">${form.company.value}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📄 사업자번호</td><td style="color: #374151;">${form.bizno.value}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📍 지역</td><td style="color: #374151;">${form.region.value}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">🏭 업종</td><td style="color: #374151;">${form.industry.value || "미입력"}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📅 설립연도</td><td style="color: #374151;">${form.founded.value || "미입력"}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📊 전년도매출</td><td style="color: #374151;">${form.revenue.value || "미입력"}</td></tr>
+        <div style="background: #f5f0e8; border-left: 3px solid #313036; padding: 9px 24px; font-size: 12px; color: #6b5b3e; letter-spacing: 0.3px;">
+          새로운 무료진단 신청이 접수되었습니다 — ${new Date().toLocaleDateString("ko-KR")} ${new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" })}
+        </div>
+
+        <div style="padding: 24px 28px 20px;">
+          <p style="margin: 0 0 10px 0; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #777; padding-bottom: 7px; border-bottom: 1px solid #f0f0f0;">Client</p>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 0; font-size: 20px; font-weight: 400; color: #1a1a1a; letter-spacing: 0.5px;">${form.company.value}</td>
+              <td style="padding: 0; font-size: 14px; color: #313036; font-weight: 500; text-align: right;">${form.phone.value}</td>
+            </tr>
+            <tr>
+              <td style="padding: 4px 0 0 0; font-size: 12px; color: #666;">${form.name.value} · ${form.email.value}</td>
+              <td style="padding: 4px 0 0 0; font-size: 12px; color: #666; text-align: right;">${form.consultTime.value}</td>
+            </tr>
+          </table>
+
+          <div style="margin-top: 18px;">
+            <p style="margin: 0 0 10px 0; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #777; padding-bottom: 7px; border-bottom: 1px solid #f0f0f0;">Details</p>
+            <table style="width: 100%; border-collapse: collapse; border: 1px solid #f0f0f0; border-radius: 2px; overflow: hidden;">
+              <tr>
+                <td style="background: #fff; padding: 10px 14px; border-bottom: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; width: 33.33%;">
+                  <p style="margin: 0 0 3px 0; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888;">사업자번호</p>
+                  <p style="margin: 0; font-size: 13px; color: #1a1a1a;">${form.bizno.value}</p>
+                </td>
+                <td style="background: #fff; padding: 10px 14px; border-bottom: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; width: 33.33%;">
+                  <p style="margin: 0 0 3px 0; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888;">지역</p>
+                  <p style="margin: 0; font-size: 13px; color: #1a1a1a;">${form.region.value}</p>
+                </td>
+                <td style="background: #fff; padding: 10px 14px; border-bottom: 1px solid #f0f0f0;">
+                  <p style="margin: 0 0 3px 0; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888;">업종</p>
+                  <p style="margin: 0; font-size: 13px; color: #1a1a1a;">${form.industry.value || "미입력"}</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="background: #fff; padding: 10px 14px; border-right: 1px solid #f0f0f0;">
+                  <p style="margin: 0 0 3px 0; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888;">설립연도</p>
+                  <p style="margin: 0; font-size: 13px; color: #1a1a1a;">${form.founded.value || "미입력"}</p>
+                </td>
+                <td style="background: #fff; padding: 10px 14px; border-right: 1px solid #f0f0f0;">
+                  <p style="margin: 0 0 3px 0; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888;">전년도매출</p>
+                  <p style="margin: 0; font-size: 13px; color: #1a1a1a;">${form.revenue.value || "미입력"}</p>
+                </td>
+                <td style="background: #fff; padding: 10px 14px;">
+                  <p style="margin: 0 0 3px 0; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888;">희망자금</p>
+                  <p style="margin: 0; font-size: 13px; color: #313036; font-weight: 500;">${form.amount.value || "미선택"}</p>
+                </td>
+              </tr>
             </table>
           </div>
 
-          <div style="background: #F5F5F5; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #313036;">
-            <h3 style="color: #313036; margin: 0 0 15px 0; font-size: 18px; border-bottom: 2px solid #313036; padding-bottom: 8px; display: inline-block;">👤 담당자 정보</h3>
-            <table style="width: 100%;">
-              <tr><td style="padding: 8px 0; color: #525252; width: 40%; white-space: nowrap;">👤 이름</td><td style="color: #374151;">${form.name.value}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">📞 연락처</td><td style="color: #313036; font-weight: 600;">${form.phone.value}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">✉️ 이메일</td><td style="color: #374151;">${form.email.value}</td></tr>
-              <tr><td style="padding: 8px 0; color: #525252; white-space: nowrap;">⏰ 연락시간</td><td style="color: #313036; font-weight: 600;">${form.consultTime.value}</td></tr>
-            </table>
-          </div>
-
-          <div style="background: linear-gradient(135deg, #201F24 0%, #141414 100%); padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);">
-            <h3 style="color: white; margin: 0 0 15px 0; font-size: 18px; font-weight: 600;">💰 자금 정보</h3>
-            <table style="width: 100%; color: white;">
-              <tr><td style="padding: 10px 15px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; width: 40%; white-space: nowrap;">💵 희망자금</td><td style="padding: 10px 15px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0; font-weight: 700; font-size: 16px;">${form.amount.value || "미선택"}</td></tr>
-              <tr><td style="padding: 10px 15px; background: rgba(255,255,255,0.15); border-radius: 8px 0 0 8px; white-space: nowrap; margin-top: 8px;">🔖 자금종류</td><td style="padding: 10px 15px; background: rgba(255,255,255,0.1); border-radius: 0 8px 8px 0;"><strong>${Array.from(
+          <div style="display: flex; align-items: center; justify-content: space-between; background: #fafafa; border-radius: 2px; padding: 10px 14px; margin-top: 16px;">
+            <div>
+              <span style="font-size: 9px; letter-spacing: 1px; color: #888; text-transform: uppercase; margin-right: 6px;">자금종류</span>
+              <span style="font-size: 12px; color: #333;">${Array.from(
                 fundTypes,
               )
                 .map((cb) => cb.value)
-                .join(", ")}</strong></td></tr>
-            </table>
+                .join(", ")}</span>
+            </div>
+            <a href="https://infinites.co.kr/admin/leads" style="display: inline-block; background: #1a1a1a; color: #ffffff; text-decoration: none; padding: 8px 18px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; border-radius: 2px; white-space: nowrap;">접수 확인</a>
           </div>
-
           ${
             form.message.value
               ? `
-          <div style="background: #F5F5F5; padding: 20px; border-radius: 12px; border-left: 4px solid #313036; margin-bottom: 20px;">
-            <h3 style="color: #313036; margin: 0 0 10px 0; font-size: 16px; font-weight: 600;">📝 문의내용</h3>
-            <p style="margin: 0; color: #374151; white-space: pre-wrap;">${form.message.value}</p>
+          <div style="margin-top: 16px; background: #fafafa; padding: 12px 14px; border-radius: 2px;">
+            <p style="margin: 0 0 6px 0; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888;">Message</p>
+            <p style="margin: 0; font-size: 12px; color: #333; line-height: 1.6; white-space: pre-wrap;">${form.message.value}</p>
           </div>
           `
               : ""
           }
         </div>
 
-        <div style="text-align: center; padding: 20px; background: #201F24; border-radius: 0 0 16px 16px; color: white; font-size: 12px;">
-          <p style="margin: 0; font-weight: 600;">인피니트 솔루션 | 1844-0621</p>
-          <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 11px;">※ 홈페이지에서 자동 발송되었습니다.</p>
+        <div style="background: #fafafa; border-top: 1px solid #f0f0f0; padding: 12px 28px; text-align: center;">
+          <p style="margin: 0; font-size: 10px; color: #888; letter-spacing: 0.3px;">INFINITE SOLUTIONS 자동 알림 · gangang901@gmail.com</p>
         </div>
       </div>
             `;

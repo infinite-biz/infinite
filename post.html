@@ -42,7 +42,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:url" content="https://infinites.co.kr/post.html" />
+    <meta property="og:url" content="https://infinites.co.kr/post" />
     <meta property="og:site_name" content="인피니트 솔루션" />
     <meta property="og:locale" content="ko_KR" />
 
@@ -60,7 +60,28 @@
     <meta name="twitter:image:alt" content="인피니트 솔루션" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://infinites.co.kr/post.html" />
+    <link rel="canonical" href="https://infinites.co.kr/post" />
+
+    <!-- JSON-LD 구조화 데이터 (JS에서 동적으로 채워짐) -->
+    <script type="application/ld+json" id="post-jsonld">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "publisher": {
+          "@type": "Organization",
+          "name": "인피니트 솔루션",
+          "url": "https://infinites.co.kr",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://infinites.co.kr/images/logo-light.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://infinites.co.kr/post"
+        }
+      }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -1762,13 +1783,6 @@
         }
 
         function displayPost(post) {
-          // slug 필드가 있으면 marketing-news 페이지로 리다이렉트
-          // replace()를 사용하여 히스토리에 새 항목을 추가하지 않음 (뒤로가기 무한루프 방지)
-          if (post.slug) {
-            window.location.replace(`/marketing-news/${post.slug}`);
-            return;
-          }
-
           loadingEl.style.display = "none";
           errorEl.style.display = "none";
           layoutEl.style.display = "grid";
@@ -1868,9 +1882,7 @@
 
                 relatedGrid.innerHTML = relatedPosts
                   .map((post) => {
-                    const postUrl = post.slug
-                      ? `/marketing-news/${post.slug}`
-                      : `post.html?id=${post.id}`;
+                    const postUrl = `post.html?id=${post.id}`;
                     const thumbnail =
                       post.thumbnail || "/images/og/og-home.png";
 

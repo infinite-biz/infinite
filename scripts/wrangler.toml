@@ -14,7 +14,7 @@ crons = ["0 0 * * *"]
 # KV 바인딩 (OTP 인증용)
 [[kv_namespaces]]
 binding = "OTP_KV"
-id = "140d1923025e421eba11e10deeac69c9"
+id = "29eae5031c28485cb62559749ae2b424"
 
 # R2 버킷 바인딩 (이미지 업로드용)
 # Public URL: https://pub-d4f7fa5a4cb648d48f34274fcba1d283.r2.dev
