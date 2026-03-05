@@ -69,18 +69,40 @@ async function getGmailAccessToken(env) {
 }
 
 // UTF-8 문자열 → Latin1 바이트열 (btoa 호환)
-function utf8ToLatin1(str) {
-  return unescape(encodeURIComponent(str));
-}
-
-// UTF-8 문자열 → base64
+// UTF-8 문자열 → base64 (Workers 호환)
 function utf8ToBase64(str) {
-  return btoa(utf8ToLatin1(str));
+  const encoder = new TextEncoder();
+  const bytes = encoder.encode(str);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
 }
 
-// RFC 2047 인코딩 (이메일 헤더용)
+// RFC 2047 인코딩 (이메일 헤더용, 75자 제한 분할)
 function encodeRfc2047(str) {
-  return "=?UTF-8?B?" + utf8ToBase64(str) + "?=";
+  const encoder = new TextEncoder();
+  const bytes = encoder.encode(str);
+  // =?UTF-8?B?...?= → 12자 오버헤드, base64 최대 63자 → 원본 최대 45바이트
+  const chunkSize = 45;
+  const parts = [];
+  let i = 0;
+  while (i < bytes.length) {
+    let end = Math.min(i + chunkSize, bytes.length);
+    // UTF-8 멀티바이트 중간에서 자르지 않도록 보정
+    while (end < bytes.length && (bytes[end] & 0xc0) === 0x80) {
+      end--;
+    }
+    const chunk = bytes.slice(i, end);
+    let binary = "";
+    for (let j = 0; j < chunk.length; j++) {
+      binary += String.fromCharCode(chunk[j]);
+    }
+    parts.push("=?UTF-8?B?" + btoa(binary) + "?=");
+    i = end;
+  }
+  return parts.join("\r\n ");
 }
 
 // From 헤더 인코딩 (표시명에 한글 포함 가능)
@@ -93,22 +115,16 @@ function encodeFromHeader(from) {
 }
 
 function buildMimeMessage({ from, to, subject, html }) {
-  const boundary = "----=_Part_" + Date.now();
-  const encodedHtml = utf8ToBase64(html);
+  // single-part MIME + 8bit 전송 (body base64 인코딩 제거)
   const lines = [
     `From: ${encodeFromHeader(from)}`,
     `To: ${to}`,
     `Subject: ${encodeRfc2047(subject)}`,
     "MIME-Version: 1.0",
-    `Content-Type: multipart/alternative; boundary="${boundary}"`,
-    "",
-    `--${boundary}`,
     "Content-Type: text/html; charset=UTF-8",
-    "Content-Transfer-Encoding: base64",
+    "Content-Transfer-Encoding: 8bit",
     "",
-    encodedHtml,
-    "",
-    `--${boundary}--`,
+    html,
   ];
   return lines.join("\r\n");
 }
@@ -128,21 +144,18 @@ function arrayBufferToBase64url(buffer) {
 
 async function sendGmail(env, accessToken, { from, to, subject, html }) {
   const mime = buildMimeMessage({ from, to, subject, html });
-  // MIME 메시지는 이미 ASCII (한글은 모두 base64 인코딩됨)
-  const raw = btoa(mime)
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
+  // uploadType=media: MIME 바이트 직접 전송 (base64url 래핑 제거 → 한글 제목 깨짐 해결)
+  const mimeBytes = new TextEncoder().encode(mime);
 
   const response = await fetch(
-    "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
+    "https://gmail.googleapis.com/upload/gmail/v1/users/me/messages/send?uploadType=media",
     {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
+        "Content-Type": "message/rfc822",
       },
-      body: JSON.stringify({ raw }),
+      body: mimeBytes,
     },
   );
 
@@ -1939,6 +1952,112 @@ export default {
           }),
           { headers: { ...CORS_HEADERS, "Content-Type": "application/json" } },
         );
+      }
+
+      // 관리자 이메일 발송 (대시보드 → Worker → Gmail uploadType=media)
+      if (path === "/admin-send-email" && request.method === "POST") {
+        try {
+          const { from, to, subject, html } = await request.json();
+          if (!to || !subject || !html) {
+            return new Response(
+              JSON.stringify({
+                success: false,
+                error: "missing params (to, subject, html)",
+              }),
+              {
+                status: 400,
+                headers: {
+                  ...CORS_HEADERS,
+                  "Content-Type": "application/json",
+                },
+              },
+            );
+          }
+          const accessToken = await getGmailAccessToken(env);
+          const result = await sendGmail(env, accessToken, {
+            from: from || "인피니트 솔루션 <noreply@mail.policy-fund.online>",
+            to,
+            subject,
+            html,
+          });
+          return new Response(
+            JSON.stringify({ success: true, messageId: result.id }),
+            {
+              headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            },
+          );
+        } catch (error) {
+          return new Response(
+            JSON.stringify({ success: false, error: error.message }),
+            {
+              status: 500,
+              headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            },
+          );
+        }
+      }
+
+      // Gmail access token 발급 (관리자 대시보드에서 직접 Gmail API 호출용)
+      if (path === "/gmail-token" && request.method === "GET") {
+        if (
+          !env.GMAIL_CLIENT_ID ||
+          !env.GMAIL_CLIENT_SECRET ||
+          !env.GMAIL_REFRESH_TOKEN
+        ) {
+          return new Response(
+            JSON.stringify({ success: false, error: "Gmail not configured" }),
+            {
+              status: 500,
+              headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            },
+          );
+        }
+        try {
+          const accessToken = await getGmailAccessToken(env);
+          return new Response(
+            JSON.stringify({ success: true, access_token: accessToken }),
+            {
+              headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            },
+          );
+        } catch (error) {
+          return new Response(
+            JSON.stringify({ success: false, error: error.message }),
+            {
+              status: 500,
+              headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            },
+          );
+        }
+      }
+
+      // 텔레그램 알림 (관리자 이메일 발송 결과 등)
+      if (path === "/notify" && request.method === "POST") {
+        const { text } = await request.json();
+        if (!text || !env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) {
+          return new Response(
+            JSON.stringify({ success: false, error: "missing params" }),
+            {
+              status: 400,
+              headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+            },
+          );
+        }
+        const tgRes = await fetch(
+          `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: env.TELEGRAM_CHAT_ID,
+              text,
+              parse_mode: "HTML",
+            }),
+          },
+        );
+        return new Response(JSON.stringify({ success: tgRes.ok }), {
+          headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+        });
       }
 
       // 헬스 체크
